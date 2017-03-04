@@ -35,7 +35,7 @@ public class TestFeedParser {
 	// private static final String FILE_PATH = "FoxNewsFeed.json";
 	// private static final String FILE_PATH = "CNNFeed.json";
 	// private static final String FILE_PATH = "BBCNewsFeed.json";
-	private static final String FILE_PATH = "TopStoriesJP.json";
+	private static final String FILE_PATH = "json/TopStoriesJP.json";
 	private static final String RSSFEED = "RSSFeed";
 	private static final String COMPANY_NAME = "companyName";
 	private static final String CHANNEL = "channel";
