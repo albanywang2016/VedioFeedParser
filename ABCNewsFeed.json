@@ -1,0 +1,148 @@
+{"RSSFeed":[
+	{
+		"companyName":"ABC News",
+		"channel":"Top Stories",
+		"link":"http://feeds.abcnews.com/abcnews/topstories"
+	},
+	{
+		"companyName":"ABC News",
+		"channel":"International",
+		"link":"http://feeds.abcnews.com/abcnews/internationalheadlines"
+	},
+	{
+		"companyName":"ABC News",
+		"channel":"U.S.",
+		"link":"http://feeds.abcnews.com/abcnews/usheadlines"
+	},
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Politics",
+		"link":"http://feeds.abcnews.com/abcnews/politicsheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Investigative Unit",
+		"link":"http://feeds.abcnews.com/abcnews/blotterheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Cuomo on the Case",
+		"link":"http://feeds.abcnews.com/abcnews/thelawheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Money",
+		"link":"http://feeds.abcnews.com/abcnews/moneyheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Technology",
+		"link":"http://feeds.abcnews.com/abcnews/technologyheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Health",
+		"link":"http://feeds.abcnews.com/abcnews/healthheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Entertainment",
+		"link":"http://feeds.abcnews.com/abcnews/entertainmentheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Travel",
+		"link":"http://feeds.abcnews.com/abcnews/travelheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Sports",
+		"link":"http://feeds.abcnews.com/abcnews/sportsheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"World News Tonight",
+		"link":"http://feeds.abcnews.com/abcnews/worldnewsheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"20/20",
+		"link":"http://feeds.abcnews.com/abcnews/2020headlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Primetime",
+		"link":"http://feeds.abcnews.com/abcnews/primetimeheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Nightline",
+		"link":"http://feeds.abcnews.com/abcnews/nightlineheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"GMA",
+		"link":"http://feeds.abcnews.com/abcnews/gmaheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"This Week",
+		"link":"http://feeds.abcnews.com/abcnews/thisweekheadlines"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Most Read Stories",
+		"link":"http://feeds.abcnews.com/abcnews/mostreadstories"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Most Viewed Videos",
+		"link":"http://feeds.abcnews.com/abcnews/mostviewedvideos"
+	},
+
+	
+	{
+		"companyName":"ABC News",
+		"channel":"Most Viewed Slideshows",
+		"link":"http://feeds.abcnews.com/abcnews/mostviewedslideshows"
+	},
+	
+	{
+		"companyName":"New York Times",
+		"channel":"Home Page",
+		"link":"view-source:http://feeds.reuters.com/news/artsculture"
+	}
+]}

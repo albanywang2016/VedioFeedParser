@@ -1,0 +1,94 @@
+{"RSSFeed":[
+
+	{
+		"companyName":"CNN",
+		"channel":"Top Stories",
+		"link":"http://rss.cnn.com/rss/cnn_topstories.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"World",
+		"link":"http://rss.cnn.com/rss/cnn_world.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"U.S.",
+		"link":"http://rss.cnn.com/rss/cnn_us.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Business",
+		"link":"http://rss.cnn.com/rss/money_latest.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Politics",
+		"link":"http://rss.cnn.com/rss/cnn_allpolitics.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Technology",
+		"link":"http://rss.cnn.com/rss/cnn_tech.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Health",
+		"link":"http://rss.cnn.com/rss/cnn_health.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Entertainment",
+		"link":"http://rss.cnn.com/rss/cnn_showbiz.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Travel",
+		"link":"http://rss.cnn.com/rss/cnn_travel.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Living",
+		"link":"http://rss.cnn.com/rss/cnn_living.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Video",
+		"link":"http://rss.cnn.com/rss/cnn_freevideo.rss"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"CNN Student News",
+		"link":"http://rss.cnn.com/services/podcasting/studentnews/rss.xml"
+	},
+	
+
+	{
+		"companyName":"CNN",
+		"channel":"Most Recent",
+		"link":"http://rss.cnn.com/rss/cnn_latest.rss"
+	}
+
+	
+]}

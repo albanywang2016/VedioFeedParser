@@ -1,0 +1,87 @@
+{"RSSFeed":[
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Latest News",
+		"link":"http://rss.upi.com/news/news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Business News",
+		"link":"http://rss.upi.com/news/business_news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Defense News",
+		"link":"http://rss.upi.com/news/dfn.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Energy News",
+		"link":"http://rss.upi.com/news/eng.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Entertainment News",
+		"link":"http://rss.upi.com/news/entertainment_news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Health News",
+		"link":"http://rss.upi.com/news/health_news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Odd News",
+		"link":"http://rss.upi.com/news/odd_news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Science News",
+		"link":"http://rss.upi.com/news/science_news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Sports News",
+		"link":"http://rss.upi.com/news/sports_news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"Top News",
+		"link":"http://rss.upi.com/news/top_news.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"U.S. News",
+		"link":"http://rss.upi.com/news/tn_us.rss"
+	},
+	
+
+	{
+		"companyName":"UPI Feed",
+		"channel":"World News",
+		"link":"http://rss.upi.com/news/tn_int.rss"
+	}
+
+	
+]}
