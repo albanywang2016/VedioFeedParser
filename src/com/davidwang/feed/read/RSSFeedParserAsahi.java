@@ -12,8 +12,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
-import java.awt.image.LookupOp;
-import java.awt.image.ShortLookupTable;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,26 +22,18 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.Attribute;
-import javax.xml.stream.events.Characters;
+
 import javax.xml.stream.events.XMLEvent;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -52,7 +42,6 @@ import org.jsoup.select.Elements;
 import com.davidwang.feed.model.Feed;
 import com.davidwang.feed.model.FeedItem;
 import com.davidwang.feed.model.Image;
-import com.davidwang.feed.model.Thumbnail;
 
 public class RSSFeedParserAsahi {
 	static final String TITLE = "title";
@@ -122,7 +111,6 @@ public class RSSFeedParserAsahi {
 	static final String DATE_PATTERN_YMD = "yyyy-MM-dd";
 	static final String ROUNDED = "rounded";
 	static final String PNG = "png";
-
 
 	final URL url;
 
@@ -332,76 +320,58 @@ public class RSSFeedParserAsahi {
 
 		// get the article body
 		Document doc = Jsoup.parse(sb.toString());
+
 		Elements bodies = doc.getElementsByClass(IMAGESMOD);
+		if (bodies != null && bodies.size() != 0) {
 
-		// get all images
-		List<Image> imageArray = new ArrayList<Image>();
-		Document doc2 = Jsoup.parse(bodies.toString());
-		int size = doc2.select(IMG).size();
-		for (int i = 0; i < size; i++) {
-			// get the image URL
-			Element imageElement = doc2.select(IMG).get(i);
+			item.setHas_image(true);
+			// get all images
 			Image image = new Image();
-			String imageURL = imageElement.attr(SRC);
-			System.out.println("imageURL = " + imageURL);
-			if (!imageURL.contains(BLANK)) {
-				if (!imageURL.contains(HTTP)) {
-					imageURL = HTTP + imageURL;
-				}
+			Document doc2 = Jsoup.parse(bodies.toString());
+			Element element = doc2.select(IMG).first();
 
-				if (imageURL.contains(BLANK))
-					break;
-				if (imageURL.contains(JPG))
-					image.setImage_type(JPG);
-
-				// get the image name from system time
-				String image_id = IMAGE + UNDERSCORE + String.valueOf(cTime) + UNDERSCORE + String.valueOf(i);
-				String fileName = image_id + DOT + JPG;
-
-				String fileDir = IMAGE + "/" + dayCreated;
-				File dir = new File(fileDir);
-				dir.mkdir();
-
-				String fullFIleName = fileDir + "/" + fileName;
-				image.setImage_id(image_id);
-				image.setImage_name(fileName);
-				image.setImage_file_name(fullFIleName);
-
-				// save the image to local file
-				if (imageURL != null && !imageURL.isEmpty()) {
-					// retrieve the image from URL and save it to local
-					saveImgToFile(fullFIleName, imageURL);
-
-					// get the width and height of the image
-					BufferedImage bimg = ImageIO.read(new File(fullFIleName));
-					image.setWidth(bimg.getWidth());
-					image.setHeight(bimg.getHeight());
-
-
-					BufferedImage bi = ImageIO.read(new File(fullFIleName));
-					BufferedImage bi2 = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_RGB);
-					bi2.createGraphics().drawImage(bi, 0, 0, Color.WHITE, null);
-					
-					String fullFileNmaePNG = fileDir + "/" + image_id + DOT + PNG;
-					
-					//ImageIO.write(bi2, PNG, new File(fullFileNmaePNG));
-					
-					// round the image with rounded corner
-					//roundAnImage(fullFileNmaePNG, image_id, fileDir);
-				}
-
-				imageArray.add(image);
+			String imageURL = element.attr(SRC);
+			if (!imageURL.contains(HTTP)) {
+				imageURL = HTTP + imageURL;
 			}
+			image.setLink(imageURL);
+			if (imageURL.contains(JPG)) {
+				image.setImage_type(JPG);
+			}
+
+			// get the image name from system time
+			String image_id = IMAGE + UNDERSCORE + String.valueOf(cTime);
+			String fileName = image_id + DOT + JPG;
+
+			String fileDir = IMAGE + "/" + dayCreated;
+			File dir = new File(fileDir);
+			dir.mkdir();
+
+			String fullFIleName = fileDir + "/" + fileName;
+			image.setImage_id(image_id);
+			image.setImage_name(fileName);
+			image.setImage_file_name(fullFIleName);
+
+			// save the image to local file
+			if (imageURL != null && !imageURL.isEmpty()) {
+				// retrieve the image from URL and save it to local
+				saveImgToFile(fullFIleName, imageURL);
+
+				// get the width and height of the image
+				BufferedImage bimg = ImageIO.read(new File(fullFIleName));
+				image.setWidth(bimg.getWidth());
+				image.setHeight(bimg.getHeight());
+
+			}
+			item.setImage(image);
 		}
 
-		item.setImageList(imageArray);
-		item.setNumberOfImages(imageArray.size());
 		// get article contents
-		Elements articles = doc.getElementsByClass(ARTICLE_TEXT);
-		Document doc3 = Jsoup.parse(articles.toString());
-		Elements articleTexts = doc3.getElementsByTag(P);
-		String contents = articleTexts.text();
-		item.setContents(contents);
+		Elements articles = doc.getElementsByClass(ARTICLE_BODY);
+//		Document doc3 = Jsoup.parse(articles.toString());
+//		Elements articleTexts = doc3.getElementsByTag(P);
+//		String contents = articleTexts.text();
+		item.setContents(articles.html());
 
 		br.close();
 		is.close();
@@ -424,7 +394,7 @@ public class RSSFeedParserAsahi {
 		while ((length = is.read(b)) != -1) {
 			os.write(b, 0, length);
 		}
-		
+
 		is.close();
 		os.close();
 	}
@@ -435,8 +405,7 @@ public class RSSFeedParserAsahi {
 		int height = bi.getHeight();
 
 		BufferedImage bi2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
-		//BufferedImage background = applyShadow(bi2, 10, Color.gray, 1f);
-		
+		// BufferedImage background = applyShadow(bi2, 10, Color.gray, 1f);
 
 		// create Graphics2D object
 		Graphics2D g2 = bi2.createGraphics();
@@ -448,18 +417,18 @@ public class RSSFeedParserAsahi {
 		rHints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
 		rHints.put(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g2.setRenderingHints(rHints);
-		
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f));
+
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
 
 		// now clip the image
 		g2.setClip(new RoundRectangle2D.Double(0, 0, width, height, width / 20, height / 20));
 
 		// now draw the image
-		//int x = (width - background.getWidth())/2;
-		//int y = (height - background.getHeight())/2;
-		//g2.drawImage(background, x, y, null);
+		// int x = (width - background.getWidth())/2;
+		// int y = (height - background.getHeight())/2;
+		// g2.drawImage(background, x, y, null);
 		g2.drawImage(bi, 0, 0, null);
-		
+
 		// dispose it after done
 		g2.dispose();
 
@@ -469,29 +438,30 @@ public class RSSFeedParserAsahi {
 	}
 
 	private BufferedImage applyShadow(BufferedImage imgSource, int size, Color color, float alpha) {
-        BufferedImage result = createCompatibleImage(imgSource, imgSource.getWidth() + (size * 2), imgSource.getHeight() + (size * 2));
-        Graphics2D g2d = result.createGraphics();
-        g2d.drawImage(generateShadow(imgSource, size, color, alpha), size, size, null);
-        g2d.drawImage(imgSource, 0, 0, null);
-        g2d.dispose();
+		BufferedImage result = createCompatibleImage(imgSource, imgSource.getWidth() + (size * 2),
+				imgSource.getHeight() + (size * 2));
+		Graphics2D g2d = result.createGraphics();
+		g2d.drawImage(generateShadow(imgSource, size, color, alpha), size, size, null);
+		g2d.drawImage(imgSource, 0, 0, null);
+		g2d.dispose();
 
-        return result;
+		return result;
 	}
 
-    public  BufferedImage createCompatibleImage(int width, int height) {
-        return createCompatibleImage(width, height, Transparency.TRANSLUCENT);
-    }
+	public BufferedImage createCompatibleImage(int width, int height) {
+		return createCompatibleImage(width, height, Transparency.TRANSLUCENT);
+	}
 
-    public  BufferedImage createCompatibleImage(int width, int height, int transparency) {
-        BufferedImage image = getGraphicsConfiguration().createCompatibleImage(width, height, transparency);
-        image.coerceData(true);
-        return image;
-    }
+	public BufferedImage createCompatibleImage(int width, int height, int transparency) {
+		BufferedImage image = getGraphicsConfiguration().createCompatibleImage(width, height, transparency);
+		image.coerceData(true);
+		return image;
+	}
 
-    public  BufferedImage createCompatibleImage(BufferedImage image) {
-        return createCompatibleImage(image, image.getWidth(), image.getHeight());
-    }
-    
+	public BufferedImage createCompatibleImage(BufferedImage image) {
+		return createCompatibleImage(image, image.getWidth(), image.getHeight());
+	}
+
 	private BufferedImage createCompatibleImage(BufferedImage image, int width, int height) {
 		return getGraphicsConfiguration().createCompatibleImage(width, height, image.getTransparency());
 	}
@@ -500,57 +470,56 @@ public class RSSFeedParserAsahi {
 		return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	}
 
-
 	private BufferedImage generateShadow(BufferedImage imgSource, int size, Color color, float alpha) {
-        int imgWidth = imgSource.getWidth() + (size * 2);
-        int imgHeight = imgSource.getHeight() + (size * 2);
+		int imgWidth = imgSource.getWidth() + (size * 2);
+		int imgHeight = imgSource.getHeight() + (size * 2);
 
-        BufferedImage imgMask = createCompatibleImage(imgWidth, imgHeight);
-        Graphics2D g2 = imgMask.createGraphics();
-        applyQualityRenderingHints(g2);
+		BufferedImage imgMask = createCompatibleImage(imgWidth, imgHeight);
+		Graphics2D g2 = imgMask.createGraphics();
+		applyQualityRenderingHints(g2);
 
-        int x = Math.round((imgWidth - imgSource.getWidth()) / 2f);
-        int y = Math.round((imgHeight - imgSource.getHeight()) / 2f);
-        g2.drawImage(imgSource, x, y, null);
-        g2.dispose();
+		int x = Math.round((imgWidth - imgSource.getWidth()) / 2f);
+		int y = Math.round((imgHeight - imgSource.getHeight()) / 2f);
+		g2.drawImage(imgSource, x, y, null);
+		g2.dispose();
 
-        // ---- Blur here ---
+		// ---- Blur here ---
 
-        BufferedImage imgGlow = generateBlur(imgMask, (size * 2), color, alpha);
+		BufferedImage imgGlow = generateBlur(imgMask, (size * 2), color, alpha);
 
-        return imgGlow;
+		return imgGlow;
 	}
-	
-    public void applyQualityRenderingHints(Graphics2D g2d) {
-        g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
-        g2d.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
-        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
-        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
-    }
-    
-    public BufferedImage generateBlur(BufferedImage imgSource, int size, Color color, float alpha) {
-    	BufferedImageOp  filter = new AffineTransformOp(new AffineTransform(), AffineTransformOp.TYPE_BICUBIC);
 
-        int imgWidth = imgSource.getWidth();
-        int imgHeight = imgSource.getHeight();
+	public void applyQualityRenderingHints(Graphics2D g2d) {
+		g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+		g2d.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+		g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+	}
 
-        BufferedImage imgBlur = createCompatibleImage(imgWidth, imgHeight);
-        Graphics2D g2 = imgBlur.createGraphics();
-        applyQualityRenderingHints(g2);
+	public BufferedImage generateBlur(BufferedImage imgSource, int size, Color color, float alpha) {
+		BufferedImageOp filter = new AffineTransformOp(new AffineTransform(), AffineTransformOp.TYPE_BICUBIC);
 
-        g2.drawImage(imgSource, 0, 0, null);
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, alpha));
-        g2.setColor(color);
+		int imgWidth = imgSource.getWidth();
+		int imgHeight = imgSource.getHeight();
 
-        g2.fillRect(0, 0, imgSource.getWidth(), imgSource.getHeight());
-        g2.dispose();
+		BufferedImage imgBlur = createCompatibleImage(imgWidth, imgHeight);
+		Graphics2D g2 = imgBlur.createGraphics();
+		applyQualityRenderingHints(g2);
 
-        imgBlur = filter.filter(imgBlur, null);
+		g2.drawImage(imgSource, 0, 0, null);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, alpha));
+		g2.setColor(color);
 
-        return imgBlur;
-    }
+		g2.fillRect(0, 0, imgSource.getWidth(), imgSource.getHeight());
+		g2.dispose();
+
+		imgBlur = filter.filter(imgBlur, null);
+
+		return imgBlur;
+	}
 }
