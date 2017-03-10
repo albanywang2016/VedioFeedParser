@@ -1,9 +1,21 @@
 package com.davidwang.feed.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FeedSource {
+	long message_id;
 	String companyName;
 	String channel;
 	String link;
+	
+	
+	public long getMessage_id() {
+		return message_id;
+	}
+	public void setMessage_id(long l) {
+		this.message_id = l;
+	}
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -24,7 +36,8 @@ public class FeedSource {
 	}
 	@Override
 	public String toString() {
-		return "FeedSource [name=" + companyName + ", channel=" + channel + ", link=" + link + "]";
+		return "FeedSource [message_id=" + message_id + ", companyName=" + companyName + ", channel=" + channel
+				+ ", link=" + link + "]";
 	}
 	
 	

@@ -307,7 +307,7 @@ public class RSSFeedParserAsahi {
 		URL url = new URL(link);
 
 		long cTime = System.currentTimeMillis();
-		item.setMessage_id(cTime);
+		item.setMessage_id(String.valueOf(cTime));
 		item.setTimestamp(String.valueOf(cTime));
 
 		InputStream is = url.openStream();

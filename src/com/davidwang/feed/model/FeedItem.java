@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FeedItem {
 
-	long message_id;
+	String message_id;
 	String title;
 	String creator;
 	String link;
@@ -14,15 +14,27 @@ public class FeedItem {
 	String contents;
 	String pubDate;
 	String timestamp;
-	int numberOfImages;
-	List<Image> imageList;
+	Image image;
 	String dayCreated;
+	boolean has_image;
 	
 		
-	public long getMessage_id() {
+	public boolean isHas_image() {
+		return has_image;
+	}
+	public void setHas_image(boolean has_image) {
+		this.has_image = has_image;
+	}
+	public Image getImage() {
+		return image;
+	}
+	public void setImage(Image image) {
+		this.image = image;
+	}
+	public String getMessage_id() {
 		return message_id;
 	}
-	public void setMessage_id(long message_id) {
+	public void setMessage_id(String message_id) {
 		this.message_id = message_id;
 	}
 	public String getDayCreated() {
@@ -37,18 +49,7 @@ public class FeedItem {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
-	public int getNumberOfImages() {
-		return numberOfImages;
-	}
-	public void setNumberOfImages(int numberOfImages) {
-		this.numberOfImages = numberOfImages;
-	}
-	public List<Image> getImageList() {
-		return imageList;
-	}
-	public void setImageList(List<Image> imageList) {
-		this.imageList = imageList;
-	}
+
 	public FeedItem(String title, String link, String guid, String description, String pubDate) {
 		super();
 		this.title = title;
@@ -59,11 +60,6 @@ public class FeedItem {
 	}
 	public FeedItem() {
 		super();
-	}
-	public FeedItem(List<Thumbnail> thumbnailList) {
-		super();
-		this.imageList = new ArrayList<Image>();
-
 	}
 	
 	public String getCreator() {
@@ -112,10 +108,10 @@ public class FeedItem {
 
 	@Override
 	public String toString() {
-		return "FeedItem [title=" + title + ", creator=" + creator + ", link=" + link + ", guid=" + guid
-				+ ", description=" + description + ", contents=" + contents + ", pubDate=" + pubDate + ", timestamp="
-				+ timestamp + ", numberOfImages=" + numberOfImages + ", imageList=" + imageList + ", dayCreated="
-				+ dayCreated + "]";
+		return "FeedItem [message_id=" + message_id + ", title=" + title + ", creator=" + creator + ", link=" + link
+				+ ", guid=" + guid + ", description=" + description + ", contents=" + contents + ", pubDate=" + pubDate
+				+ ", timestamp=" + timestamp + ", image=" + image + ", dayCreated=" + dayCreated + ", has_image="
+				+ has_image + "]";
 	}
 	
 	

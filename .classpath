@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="H:/Projects/JavaProjects/mysql-connector-java-5.1.0/mysql-connector-java-5.1.0-bin.jar"/>
-	<classpathentry kind="lib" path="H:/Projects/JavaProjects/RssFeedParser/lib/commons-lang3-3.5.jar"/>
-	<classpathentry kind="lib" path="H:/Projects/JavaProjects/RssFeedParser/lib/jsoup-1.10.2.jar"/>
-	<classpathentry kind="lib" path="H:/Projects/JavaProjects/RssFeedParser/lib/java-json.jar"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.10.2.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="lib/minimal-json-0.9.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

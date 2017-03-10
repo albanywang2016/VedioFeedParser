@@ -5,10 +5,17 @@ public class Image {
 	String image_type;
 	String image_name;
 	String image_file_name;
+	String link;
 	int width;
 	int height;
 	
 
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
 	public String getImage_id() {
 		return image_id;
 	}
@@ -48,7 +55,8 @@ public class Image {
 	@Override
 	public String toString() {
 		return "Image [image_id=" + image_id + ", image_type=" + image_type + ", image_name=" + image_name
-				+ ", image_file_name=" + image_file_name + ", width=" + width + ", height=" + height + "]";
+				+ ", image_file_name=" + image_file_name + ", link=" + link + ", width=" + width + ", height=" + height
+				+ "]";
 	}
 	
 }

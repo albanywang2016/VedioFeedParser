@@ -57,6 +57,7 @@ public class TestFeedParser {
 	private static final String MESSAGE_ID = "message_id";
 	private static final String SOURCE_NAME = "source_name";
 	private static final String CONTENTS = "contents";
+	private static final String CONTENTS_URL = "contents_url";
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, ParseException {
 
@@ -258,7 +259,7 @@ public class TestFeedParser {
 							"source_name = " + sourceName + ", channel = " + channel + ", title = " + item.getTitle());
 				} else {
 					PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
-					stmt.setLong(1, item.getMessage_id());
+					stmt.setLong(1, Long.parseLong(item.getMessage_id()));
 					stmt.setString(2, sourceName);
 					stmt.setString(3, channel);
 					stmt.setString(4, item.getTitle());
@@ -289,7 +290,9 @@ public class TestFeedParser {
 
 		FileWriter writer = new FileWriter(source_name + ".json");
 
-		JsonObject obj = new JsonObject();
+		JsonObject obj;
+		JsonArray array = new JsonArray();
+		
 		for (int i = 0; i < items.size(); i++) {
 			FeedItem item = items.get(i);
 
@@ -302,13 +305,16 @@ public class TestFeedParser {
 			
 			itemMsg = Json.object().add(MESSAGE_ID, item.getMessage_id()).add(SOURCE_NAME, source_name)
 					.add(TITLE, item.getTitle()).add(TIME, item.getPubDate())
-					.add(LINK, imageLink).add(CONTENTS, item.getContents());
+					.add(LINK, imageLink).add(CONTENTS_URL, item.getLink()).add(CONTENTS, item.getContents());
 
-			obj = new JsonObject().add(ITEM, itemMsg);
+			array.add(itemMsg);
 
-			obj.writeTo(writer, WriterConfig.PRETTY_PRINT);
+			
 		}
-
+		obj = new JsonObject().add(ITEM, array);
+		
+		obj.writeTo(writer, WriterConfig.PRETTY_PRINT);
+		
 		writer.flush();
 		writer.close();
 
