@@ -4,12 +4,19 @@ public class Image {
 	String image_id;
 	String image_type;
 	String image_name;
-	String image_file_name;
+	String fullFIleName;
+	String image_url;
 	String link;
 	int width;
 	int height;
 	
 
+	public String getFullFIleName() {
+		return fullFIleName;
+	}
+	public void setFullFIleName(String fullFIleName) {
+		this.fullFIleName = fullFIleName;
+	}
 	public String getLink() {
 		return link;
 	}
@@ -34,11 +41,12 @@ public class Image {
 	public void setImage_name(String image_name) {
 		this.image_name = image_name;
 	}
-	public String getImage_file_name() {
-		return image_file_name;
+
+	public String getImage_url() {
+		return image_url;
 	}
-	public void setImage_file_name(String image_file_name) {
-		this.image_file_name = image_file_name;
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
 	}
 	public int getWidth() {
 		return width;
@@ -55,8 +63,8 @@ public class Image {
 	@Override
 	public String toString() {
 		return "Image [image_id=" + image_id + ", image_type=" + image_type + ", image_name=" + image_name
-				+ ", image_file_name=" + image_file_name + ", link=" + link + ", width=" + width + ", height=" + height
-				+ "]";
+				+ ", fullFIleName=" + fullFIleName + ", image_url=" + image_url + ", link=" + link + ", width=" + width
+				+ ", height=" + height + "]";
 	}
 	
 }

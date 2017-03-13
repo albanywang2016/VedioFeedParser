@@ -15,6 +15,7 @@ public class Feed {
 	String updatePeriod;
 	int updateFrequency;
 	String updateBase;
+	String previousLastUpdate;
 
 	
 	List<FeedItem> items = new ArrayList<FeedItem>();
@@ -49,6 +50,15 @@ public class Feed {
 		super();
 	}
 
+	
+
+	public String getPreviousLastUpdate() {
+		return previousLastUpdate;
+	}
+
+	public void setPreviousLastUpdate(String previousLastUpdate) {
+		this.previousLastUpdate = previousLastUpdate;
+	}
 
 	public String getCreator() {
 		return creator;
@@ -152,7 +162,8 @@ public class Feed {
 		return "Feed [title=" + title + ", link=" + link + ", description=" + description + ", language=" + language
 				+ ", copyright=" + copyright + ", lastBuildDate=" + lastBuildDate + ", creator=" + creator
 				+ ", publisher=" + publisher + ", updatePeriod=" + updatePeriod + ", updateFrequency=" + updateFrequency
-				+ ", updateBase=" + updateBase + ", items=" + items + "]";
+				+ ", updateBase=" + updateBase + ", previousLastUpdate=" + previousLastUpdate + ", items=" + items
+				+ "]";
 	}
 	
 	
