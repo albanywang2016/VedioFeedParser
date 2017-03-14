@@ -24,7 +24,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +31,8 @@ import javax.imageio.ImageIO;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
-
 import javax.xml.stream.events.XMLEvent;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -45,76 +44,9 @@ import com.davidwang.feed.model.Image;
 import com.davidwang.feed.utils.Const;
 import com.davidwang.feed.utils.Utils;
 
-public class RSSFeedParserAsahi {
-	static final String TITLE = "title";
-	static final String DESCRIPTION = "description";
-	static final String CHANNEL = "channel";
-	static final String COPYRIGHT = "copyright";
-	static final String RIGHTS = "rights";
-	static final String LINK = "link";
-	static final String AUTHOR = "suthor";
-	static final String ITEMS = "items";
-	static final String ITEM = "item";
-	static final String PUB_DATE = "pubDate";
-	static final String GUID = "guid";
-	static final String CATEGORY = "category";
-	static final String MEDIA = "media";
-	static final String THUMBNAIL = "thumbnail";
-	static final String MEDIA_CONTENT = "content";
-	static final String URL = "url";
-	static final String CREDIT = "credit";
-	static final String WIDTH = "width";
-	static final String HEIGHT = "height";
-	static final String MEDIUM = "medium";
-	static final String LAST_BUILD_DATE = "lastBuildDate";
-	static final String LANGUAGE = "language";
-	static final String LA_TIMES = "Los Angeles Times";
-	static final String BBC_NEWS = "BBC News";
-	static final String FOX_NEWS = "FOX News";
-	static final String DC = "dc";
-	static final String SUBJECT = "subject";
-	static final String DATE = "date";
-	static final String CREATOR = "creator";
-	static final String JPG = "jpg";
-	static final String IMG = "img";
-	static final String IMAGE = "image";
-	static final String ITEMPROP = "itemprop";
-	static final String PROPERTY = "property";
-	static final String ARTICLE_BODY = "ArticleBody";
-	static final String ARTICLE_TEXT = "ArticleText";
-	static final String ARTICLE_TITLE = "ArticleTitle";
-	static final String ID = "id";
-	static final String PAGE = "page";
-	static final String CLASS = "class";
+public class RSSFeedParserYahoo {
 
-	static final String PUBLISHER = "publisher";
-	static final String SYN = "syn";
-	static final String UPDATE_PERIOD = "updatePeriod";
-	static final String UPDATE_FREQUENCY = "updateFrequency";
-	static final String UPDATE_BASE = "updateBase";
-	static final String MAIN_INNER = "MainInner";
-	static final String PR = "PR";
-	static final String CNET = "CNET";
-	static final String ZDNET = "ZDNet";
-	static final String LEFT_BRAKET = "<";
-	static final String TETSUDO = "鉄道コム";
-	static final String SUB = "Sub";
-	static final String LAST_UPDATED = "LastUpdated";
-	static final String P = "p";
-	static final String A = "a";
-	static final String SRC = "src";
-	static final String HTTP = "http:";
-	static final String UNDERSCORE = "_";
-	static final String DOT = ".";
-	static final String rdf = "rdf";
-	static final String RDF = "RDF";
-	static final String BLANK = "blank";
-	static final String IMAGESMOD = "ImagesMod";
-
-	static final String ROUNDED = "rounded";
-	static final String PNG = "png";
-	
-	private int dateCount = 0;
+	private boolean pubDateFound = false;
 
 	public String getLastUpdateTime(String link) throws UnsupportedEncodingException, MalformedURLException {
 		String lastBuildDate = "";
@@ -129,7 +61,7 @@ public class RSSFeedParserAsahi {
 		}
 
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		inputFactory.setProperty("javax.xml.stream.isCoalescing", true);
+		inputFactory.setProperty(Const.IS_COALESCING, true);
 		try {
 
 			XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
@@ -139,12 +71,10 @@ public class RSSFeedParserAsahi {
 				if (event.isStartElement()) {
 					String prefix = event.asStartElement().getName().getPrefix();
 					String localPart = event.asStartElement().getName().getLocalPart();
-					// System.out.println("event asStartElement = " +
-					// event.asStartElement().toString());
 
-					if (prefix.equalsIgnoreCase(DC)) {
+					if (prefix.isEmpty()) {
 						switch (localPart) {
-						case DATE:
+						case Const.LAST_BUILD_DATE:
 							lastBuildDate = getData(event, eventReader);
 							return lastBuildDate;
 						}
@@ -156,29 +86,21 @@ public class RSSFeedParserAsahi {
 			throw new RuntimeException(e);
 		}
 
-		return "";
+		return lastBuildDate;
 
 	}
 
-	public Feed readFeed(String source_name, String channel, String linkURL) throws IOException, ParseException {
+	public Feed readFeed(String source_name, String channel, String linkURL, String previousLastUpdate,
+			boolean first_time_retrieve) throws IOException, ParseException {
 		InputStream in;
 		boolean isFeedHeader = true;
 		String title = "";
 		String link = "";
 		String description = "";
-		String guid = "";
-		String pubDate = "";
-		String medium = "";
-		String lastBuildDate = "";
 		String language = "";
 		String copyright = "";
-		String contents = "";
-		String creator = source_name;
-		String publisher = "";
-		String updatePeriod = "";
-		String updateBase = "";
-		int updateFrequency = 0;
-		String date = "";
+		String lastBuildDate = "";
+		String pubDate = "";
 		List<FeedItem> items = null;
 
 		Feed feed = null;
@@ -191,7 +113,7 @@ public class RSSFeedParserAsahi {
 		}
 
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		inputFactory.setProperty("javax.xml.stream.isCoalescing", true);
+		inputFactory.setProperty(Const.IS_COALESCING, true);
 		try {
 
 			XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
@@ -207,21 +129,51 @@ public class RSSFeedParserAsahi {
 					if (prefix.isEmpty()) {
 						// when prefix is empty
 						switch (localPart) {
-						case CHANNEL:
+						case Const.CHANNEL:
 							feed = new Feed();
 							items = new ArrayList<FeedItem>();
 							event = eventReader.nextEvent();
 							break;
-						case TITLE:
+						case Const.TITLE:
 							title = getData(event, eventReader);
+							String source = Const.LEFT_BRACKET + source_name + Const.RIGHT_BRACKET;
+							if (title.contains(source_name)) {
+								if (title.indexOf(source_name) > 0) {
+									title = title.substring(0, title.indexOf(source_name) - 1);
+								}
+
+							}
 							break;
-						case LINK:
+						case Const.LINK:
 							link = getData(event, eventReader);
 							break;
-						case DESCRIPTION:
+						case Const.DESCRIPTION:
 							description = getData(event, eventReader);
 							break;
-						case ITEM:
+						case Const.LANGUAGE:
+							language = getData(event, eventReader);
+							break;
+						case Const.COPYRIGHT:
+							copyright = getData(event, eventReader);
+							break;
+						case Const.LAST_BUILD_DATE:
+							lastBuildDate = getData(event, eventReader);
+							break;
+						case Const.PUB_DATE:
+							pubDate = getData(event, eventReader);
+							if (!pubDateFound) {
+								feed.setPreviousLastUpdate(pubDate);
+							}
+							pubDateFound = true;
+
+							if (!first_time_retrieve) {
+								if (pubDate.equalsIgnoreCase(previousLastUpdate)) {
+									feed.setItems(items);
+									return feed;
+								}
+							}
+							break;
+						case Const.ITEM:
 							if (isFeedHeader) {
 								isFeedHeader = false;
 								feed.setTitle(title);
@@ -229,82 +181,45 @@ public class RSSFeedParserAsahi {
 								feed.setDescription(description);
 								feed.setLanguage(language);
 								feed.setCopyright(copyright);
-								feed.setCreator(creator);
-								feed.setLastBuildDate(date);
-								feed.setPublisher(publisher);
-								feed.setUpdatePeriod(updatePeriod);
-								feed.setUpdateFrequency(updateFrequency);
-								feed.setUpdateBase(updateBase);
+								feed.setLastBuildDate(lastBuildDate);
 							}
 							event = eventReader.nextEvent();
 							break;
-
-						}
-					} else if (prefix.equalsIgnoreCase(DC)) {
-						switch (localPart) {
-						case LANGUAGE:
-							language = getData(event, eventReader);
-							break;
-						case RIGHTS:
-							copyright = getData(event, eventReader);
-							break;
-						case CREATOR:
-							creator = getData(event, eventReader);
-							break;
-						case DATE:
-							dateCount++;
-							date = getData(event, eventReader);
-							if(dateCount == 2){
-								feed.setPreviousLastUpdate(date);
-							}
-							break;
-						case PUBLISHER:
-							publisher = getData(event, eventReader);
-							break;
-
-						}
-					} else if (prefix.equalsIgnoreCase(SYN)) {
-						switch (localPart) {
-						case UPDATE_PERIOD:
-							updatePeriod = getData(event, eventReader);
-							break;
-						case UPDATE_FREQUENCY:
-							updateFrequency = tryParse(getData(event, eventReader));
-							break;
-						case UPDATE_BASE:
-							updateBase = getData(event, eventReader);
-							break;
 						}
 					}
-
 				} else if (event.isEndElement()) {
 					String prefix = event.asEndElement().getName().getPrefix();
 					String localPart = event.asEndElement().getName().getLocalPart();
 
 					if (prefix.isEmpty()) {
-						if (localPart == (ITEM)) {
+						if (localPart == (Const.ITEM)) {
 							System.out.println("title = " + title);
 							FeedItem item = new FeedItem();
-							if (title.isEmpty() || link.isEmpty() || title.contains(PR) || title.contains(CNET)
-									|| title.contains(ZDNET) || title.contains(TETSUDO)) {
+							if (title.isEmpty() || link.isEmpty()) {
 								// Do nothing
 							} else {
 								String dayCreated = Utils.formatTime(LocalDateTime.now());
-								item = setItems(link, dayCreated);
+								String timestamp = String.valueOf(System.currentTimeMillis());
+
+								String fileDir = Const.SAVED_FOLDER + dayCreated;
+								File dir = new File(fileDir);
+								dir.mkdir();
+
 								item.setTitle(title);
 								item.setLink(link);
-								// for Asahi that it does not have creator and
-								// description on item field
-								item.setCreator(source_name);
-								item.setDescription(title);
-								item.setPubDate(date);
+								item.setPubDate(pubDate);
+								item.setTimestamp(timestamp);
 								item.setDayCreated(dayCreated);
+								item.setContents(RetrieveContents(link));
+								Image image = RetrieveImage(link, dayCreated, timestamp, fileDir);
+								if (image != null) {
+									item.setImage(image);
+									item.setHas_image(true);
+								}
 								items.add(item);
 							}
 							event = eventReader.nextEvent();
-						}
-					} else if (prefix == rdf) {
-						if (localPart == RDF) {
+						} else if (localPart.equalsIgnoreCase(Const.CHANNEL)) {
 							feed.setItems(items);
 						}
 					}
@@ -318,173 +233,136 @@ public class RSSFeedParserAsahi {
 		return feed;
 	}
 
-	public Feed retrieveUpdatedFeed(String source_name, String channel, String previousLastUpdate, String linkURL)
-			throws IOException, ParseException {
-		Feed feed = null;
-		InputStream in;
-		boolean isFeedHeader = true;
-		String title = "";
-		String link = "";
-		String description = "";
-		String language = "";
-		String copyright = "";
-		String creator = source_name;
-		String publisher = "";
-		String updatePeriod = "";
-		String updateBase = "";
-		int updateFrequency = 0;
-		String date = "";
-		List<FeedItem> items = null;
-
-		URL url = new URL(linkURL);
-		try {
-			in = url.openStream();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-
-		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-		inputFactory.setProperty("javax.xml.stream.isCoalescing", true);
-		try {
-
-			XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
-			while (eventReader.hasNext()) {
-				XMLEvent event = eventReader.nextEvent();
-
-				if (event.isStartElement()) {
-					String prefix = event.asStartElement().getName().getPrefix();
-					String localPart = event.asStartElement().getName().getLocalPart();
-					// System.out.println("event asStartElement = " +
-					// event.asStartElement().toString());
-
-					if (prefix.isEmpty()) {
-						// when prefix is empty
-						switch (localPart) {
-						case CHANNEL:
-							feed = new Feed();
-							items = new ArrayList<FeedItem>();
-							event = eventReader.nextEvent();
-							break;
-						case TITLE:
-							title = getData(event, eventReader);
-							break;
-						case LINK:
-							link = getData(event, eventReader);
-							break;
-						case DESCRIPTION:
-							description = getData(event, eventReader);
-							break;
-						case ITEM:
-							if (isFeedHeader) {
-								isFeedHeader = false;
-								feed.setTitle(title);
-								feed.setLink(link);
-								feed.setDescription(description);
-								feed.setLanguage(language);
-								feed.setCopyright(copyright);
-								feed.setCreator(creator);
-								feed.setLastBuildDate(date);
-								feed.setPublisher(publisher);
-								feed.setUpdatePeriod(updatePeriod);
-								feed.setUpdateFrequency(updateFrequency);
-								feed.setUpdateBase(updateBase);
-							}
-							event = eventReader.nextEvent();
-							break;
-
-						}
-					} else if (prefix.equalsIgnoreCase(DC)) {
-						switch (localPart) {
-						case LANGUAGE:
-							language = getData(event, eventReader);
-							break;
-						case RIGHTS:
-							copyright = getData(event, eventReader);
-							break;
-						case CREATOR:
-							creator = getData(event, eventReader);
-							break;
-						case DATE:
-							++dateCount;
-							date = getData(event, eventReader);
-							if(dateCount == 2){
-								feed.setPreviousLastUpdate(date);
-							}
-							if(date.equalsIgnoreCase(previousLastUpdate)){
-								feed.setItems(items);
-								return feed;
-							}
-							break;
-						case PUBLISHER:
-							publisher = getData(event, eventReader);
-							break;
-
-						}
-					} else if (prefix.equalsIgnoreCase(SYN)) {
-						switch (localPart) {
-						case UPDATE_PERIOD:
-							updatePeriod = getData(event, eventReader);
-							break;
-						case UPDATE_FREQUENCY:
-							updateFrequency = tryParse(getData(event, eventReader));
-							break;
-						case UPDATE_BASE:
-							updateBase = getData(event, eventReader);
-							break;
-						}
-					}
-
-				} else if (event.isEndElement()) {
-					String prefix = event.asEndElement().getName().getPrefix();
-					String localPart = event.asEndElement().getName().getLocalPart();
-
-					if (prefix.isEmpty()) {
-						if (localPart == (ITEM)) {
-							System.out.println("title = " + title);
-							FeedItem item = new FeedItem();
-							if (title.isEmpty() || link.isEmpty() || title.contains(PR) || title.contains(CNET)
-									|| title.contains(ZDNET) || title.contains(TETSUDO)) {
-								// Do nothing
-							} else {
-								String dayCreated = Utils.formatTime(LocalDateTime.now());
-								item = setItems(link, dayCreated);
-								item.setTitle(title);
-								item.setLink(link);
-								// for Asahi that it does not have creator and
-								// description on item field
-								item.setCreator(source_name);
-								item.setDescription(title);
-								item.setPubDate(date);
-								item.setDayCreated(dayCreated);
-								items.add(item);
-							}
-							event = eventReader.nextEvent();
-						}
-					} else if (prefix == rdf) {
-						if (localPart == RDF) {
-							feed.setItems(items);
-							return feed;
-						}
-					}
-				}
-			}
-		} catch (XMLStreamException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException(e);
-		}
-
-		return null;
-	}
-
-	private Integer tryParse(String value) {
-		try {
-			return value.isEmpty() ? 0 : Integer.parseInt(value);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
+	// public Feed retrieveUpdatedFeed(String source_name, String channel,
+	// String previousLastUpdate, String linkURL)
+	// throws IOException, ParseException {
+	// InputStream in;
+	// boolean isFeedHeader = true;
+	// String title = "";
+	// String link = "";
+	// String description = "";
+	// String language = "";
+	// String copyright = "";
+	// String lastBuildDate = "";
+	// String pubDate = "";
+	// List<FeedItem> items = null;
+	//
+	// Feed feed = null;
+	//
+	// URL url = new URL(linkURL);
+	// try {
+	// in = url.openStream();
+	// } catch (IOException e) {
+	// throw new RuntimeException(e);
+	// }
+	//
+	// XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+	// inputFactory.setProperty(Const.IS_COALESCING, true);
+	// try {
+	//
+	// XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
+	// while (eventReader.hasNext()) {
+	// XMLEvent event = eventReader.nextEvent();
+	//
+	// if (event.isStartElement()) {
+	// String prefix = event.asStartElement().getName().getPrefix();
+	// String localPart = event.asStartElement().getName().getLocalPart();
+	// // System.out.println("event asStartElement = " +
+	// // event.asStartElement().toString());
+	//
+	// if (prefix.isEmpty()) {
+	// // when prefix is empty
+	// switch (localPart) {
+	// case Const.CHANNEL:
+	// feed = new Feed();
+	// items = new ArrayList<FeedItem>();
+	// event = eventReader.nextEvent();
+	// break;
+	// case Const.TITLE:
+	// title = getData(event, eventReader);
+	// break;
+	// case Const.LINK:
+	// link = getData(event, eventReader);
+	// break;
+	// case Const.DESCRIPTION:
+	// description = getData(event, eventReader);
+	// break;
+	// case Const.LANGUAGE:
+	// language = getData(event, eventReader);
+	// break;
+	// case Const.COPYRIGHT:
+	// copyright = getData(event, eventReader);
+	// break;
+	// case Const.LAST_BUILD_DATE:
+	// lastBuildDate = getData(event, eventReader);
+	// break;
+	// case Const.PUB_DATE:
+	// pubDate = getData(event, eventReader);
+	// if (!pubDateFound) {
+	// feed.setPreviousLastUpdate(pubDate);
+	// }
+	// pubDateFound = true;
+	//
+	// break;
+	// case Const.ITEM:
+	// if (isFeedHeader) {
+	// isFeedHeader = false;
+	// feed.setTitle(title);
+	// feed.setLink(link);
+	// feed.setDescription(description);
+	// feed.setLanguage(language);
+	// feed.setCopyright(copyright);
+	// feed.setLastBuildDate(lastBuildDate);
+	// }
+	// event = eventReader.nextEvent();
+	// break;
+	// }
+	// }
+	// } else if (event.isEndElement()) {
+	// String prefix = event.asEndElement().getName().getPrefix();
+	// String localPart = event.asEndElement().getName().getLocalPart();
+	//
+	// if (prefix.isEmpty()) {
+	// if (localPart == (Const.ITEM)) {
+	// System.out.println("title = " + title);
+	// FeedItem item = new FeedItem();
+	// if (title.isEmpty() || link.isEmpty()) {
+	// // Do nothing
+	// } else {
+	// String dayCreated = Utils.formatTime(LocalDateTime.now());
+	// String timestamp = String.valueOf(System.currentTimeMillis());
+	//
+	// String fileDir = Const.SAVED_FOLDER + dayCreated;
+	// File dir = new File(fileDir);
+	// dir.mkdir();
+	//
+	// item.setTitle(title);
+	// item.setLink(link);
+	// item.setPubDate(pubDate);
+	// item.setDayCreated(dayCreated);
+	// item.setTimestamp(timestamp);
+	// item.setContents(RetrieveContents(link));
+	// Image image = RetrieveImage(link, dayCreated, timestamp, fileDir);
+	// if (image != null) {
+	// item.setImage(image);
+	// item.setHas_image(true);
+	// }
+	// items.add(item);
+	// }
+	// event = eventReader.nextEvent();
+	// } else if (localPart.equalsIgnoreCase(Const.CHANNEL)) {
+	// feed.setItems(items);
+	// }
+	// }
+	// }
+	// }
+	// } catch (XMLStreamException e) {
+	// // TODO Auto-generated catch block
+	// throw new RuntimeException(e);
+	// }
+	//
+	// return feed;
+	// }
 
 	private String getData(XMLEvent event, XMLEventReader eventReader)
 			throws XMLStreamException, UnsupportedEncodingException {
@@ -505,12 +383,8 @@ public class RSSFeedParserAsahi {
 
 	}
 
-	private FeedItem setItems(String link, String dayCreated) throws IOException, ParseException {
-		FeedItem item = new FeedItem();
+	private String RetrieveContents(String link) throws IOException {
 		URL url = new URL(link);
-
-		long cTime = System.currentTimeMillis();
-		item.setTimestamp(String.valueOf(cTime));
 
 		InputStream is = url.openStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -523,32 +397,45 @@ public class RSSFeedParserAsahi {
 		// get the article body
 		Document doc = Jsoup.parse(sb.toString());
 
-		Elements bodies = doc.getElementsByClass(IMAGESMOD);
+		Elements bodies = doc.getElementsByClass(Const.ARTICLE);
+
+		return bodies.toString();
+	}
+
+	private Image RetrieveImage(String link, String dayCreated, String timestamp, String fileDir) throws IOException {
+
+		URL url = new URL(link);
+		Image image = null;
+		InputStream is = url.openStream();
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
+		String line = "";
+		while ((line = br.readLine()) != null) {
+			sb.append(line);
+		}
+
+		// get the image
+		Document doc = Jsoup.parse(sb.toString());
+
+		Elements bodies = doc.getElementsByClass(Const.THUMB);
 		if (bodies != null && bodies.size() != 0) {
+			image = new Image();
+			image.setTime_stamp(timestamp);
 
-			item.setHas_image(true);
-			// get all images
-			Image image = new Image();
 			Document doc2 = Jsoup.parse(bodies.toString());
-			Element element = doc2.select(IMG).first();
+			Element element = doc2.select(Const.IMG).first();
 
-			String imageURL = element.attr(SRC);
-			if (!imageURL.contains(HTTP)) {
-				imageURL = HTTP + imageURL;
-			}
+			String imageURL = element.attr(Const.SRC);
+
 			image.setLink(imageURL);
-			if (imageURL.contains(JPG)) {
-				image.setImage_type(JPG);
+			if (imageURL.contains(Const.JPG)) {
+				image.setImage_type(Const.JPG);
 			}
 
 			// get the image name from system time
-			String image_id = IMAGE + UNDERSCORE + String.valueOf(cTime);
-			String fileName = image_id + DOT + JPG;
-			image.setImage_name(fileName);
 
-			String fileDir = Const.SAVED_FOLDER + dayCreated;
-			File dir = new File(fileDir);
-			dir.mkdir();
+			String fileName = Const.IMAGE + Const.UNDERSCORE + timestamp + Const.DOT + Const.JPG;
+			image.setImage_name(fileName);
 
 			String fullFIleName = fileDir + "/" + fileName;
 			image.setFullFIleName(fullFIleName);
@@ -556,20 +443,12 @@ public class RSSFeedParserAsahi {
 			String image_url = Const.ANDROID_CONNECT + dayCreated + "/" + fileName;
 			image.setImage_url(image_url);
 
-			item.setImage(image);
 		}
-
-		// get article contents
-		Elements articles = doc.getElementsByClass(ARTICLE_BODY);
-		// Document doc3 = Jsoup.parse(articles.toString());
-		// Elements articleTexts = doc3.getElementsByTag(P);
-		// String contents = articleTexts.text();
-		item.setContents(articles.html());
 
 		br.close();
 		is.close();
 
-		return item;
+		return image;
 	}
 
 	public void saveImgToFile(String fileName, String link) throws IOException, ParseException {
@@ -621,7 +500,7 @@ public class RSSFeedParserAsahi {
 		g2.dispose();
 
 		// write to a new image file
-		ImageIO.write(bi2, "PNG", new File(fileDir + "/" + image_id + UNDERSCORE + ROUNDED + DOT + PNG));
+		ImageIO.write(bi2, "PNG", new File(fileDir + "/" + image_id + Const.UNDERSCORE + Const.DOT + Const.PNG));
 
 	}
 
