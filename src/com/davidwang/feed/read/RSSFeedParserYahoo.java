@@ -136,7 +136,6 @@ public class RSSFeedParserYahoo {
 							break;
 						case Const.TITLE:
 							title = getData(event, eventReader);
-							String source = Const.LEFT_BRACKET + source_name + Const.RIGHT_BRACKET;
 							if (title.contains(source_name)) {
 								if (title.indexOf(source_name) > 0) {
 									title = title.substring(0, title.indexOf(source_name) - 1);
