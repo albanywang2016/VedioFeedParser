@@ -3,233 +3,233 @@
 	{
 		"companyName":"AbemaTIMES",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/abema-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/abema-dom.xml"
 	},
 	
 	{
 		"companyName":"BuzzFeed Japan",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/bfj-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/bfj-dom.xml"
 	},
 
 	{
 		"companyName":"ITmedia ビジネスオンライン",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/zdn_mkt-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/zdn_mkt-dom.xml"
 	},
 
 	{
 		"companyName":"tvkニュース",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/tvk-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/tvk-dom.xml"
 	},
 
 	{
 		"companyName":"医療介護CBニュース",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/cbn-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/cbn-dom.xml"
 	},	
 
 	{
 		"companyName":"沖縄タイムス",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/okinawat-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/okinawat-dom.xml"
 	},					
 
 	{
 		"companyName":"産経新聞",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/san-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/san-dom.xml"
 	},	
 
 	{
 		"companyName":"スポニチアネックス",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/spnannex-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/spnannex-dom.xml"
 	},
 	
 	
 	{
 		"companyName":"選挙ドットコム",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/senkyocom-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/senkyocom-dom.xml"
 	},
 
 	{
 		"companyName":"テレ玉",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/teletama-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/teletama-dom.xml"
 	},
 
 	{
 		"companyName":"日刊スポーツ",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/nksports-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/nksports-dom.xml"
 	},
 	
 	{
 		"companyName":"ニュースイッチ",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/newswitch-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/newswitch-dom.xml"
 	},
 	
 	{
 		"companyName":"ビデオニュース・ドットコム",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/videonewsv-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/videonewsv-dom.xml"
 	},
 	
 	{
 		"companyName":"弁護士ドットコム",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/bengocom-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/bengocom-dom.xml"
 	},
 
 	
 	{
 		"companyName":"北海道新聞",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/doshin-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/doshin-dom.xml"
 	},
 
 	
 	{
 		"companyName":"レスキューナウニュース",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/rescuenow-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/rescuenow-dom.xml"
 	},
 
 	
 	{
 		"companyName":"ログミー",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/logmi-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/logmi-dom.xml"
 	},
 
 	
 	{
 		"companyName":"Aviation Wire",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/awire-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/awire-dom.xml"
 	},
 
 	
 	{
 		"companyName":"CBCテレビ",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/cbc-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/cbc-dom.xml"
 	},
 
 	
 	{
 		"companyName":"J-CASTニュース",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/jct-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/jct-dom.xml"
 	},
 
 	
 	{
 		"companyName":"TOKYO MX",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/tokyomx-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/tokyomx-dom.xml"
 	},
 
 	
 	{
 		"companyName":"withnews",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/withnews-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/withnews-dom.xml"
 	},
 
 	
 	{
 		"companyName":"アジアプレス・ネットワーク",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/asiap-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/asiap-dom.xml"
 	},
 
 	
 	{
 		"companyName":"ウェザーマップ",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/wmap-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/wmap-dom.xml"
 	},
 
 	
 	{
 		"companyName":"高校生新聞オンライン",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/koukousei-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/koukousei-dom.xml"
 	},
 
 	
 	{
 		"companyName":"サンケイスポーツ",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/sanspo-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/sanspo-dom.xml"
 	},
 
 	
 	{
 		"companyName":"スポーツ報知",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/sph-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/sph-dom.xml"
 	},
 
 	
 	{
 		"companyName":"税理士ドットコム",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/zeiricom-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/zeiricom-dom.xml"
 	},
 
 	
 	{
 		"companyName":"西日本新聞",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/nishinp-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/nishinp-dom.xml"
 	},
 
 	
 	{
 		"companyName":"日本農業新聞",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/agrinews-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/agrinews-dom.xml"
 	},
 
 	
 	{
 		"companyName":"ニュースソクラ",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/socra-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/socra-dom.xml"
 	},
 
 	
 	{
 		"companyName":"福祉新聞",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/fukushi-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/fukushi-dom.xml"
 	},
 
 	
 	{
 		"companyName":"ホウドウキョク",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/houdouk-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/houdouk-dom.xml"
 	},
 
 	
 	{
 		"companyName":"毎日放送",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/mbsnews-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/mbsnews-dom.xml"
 	},
 
 	
 	{
 		"companyName":"レスポンス",
 		"channel":"domestic",
-		"link":"http://headlines.yahoo.co.jp/rss/rps-dom.xml"
+		"link":"https://headlines.yahoo.co.jp/rss/rps-dom.xml"
 	}
 
 

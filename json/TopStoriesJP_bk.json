@@ -1,11 +1,10 @@
 {"RSSFeed":[
 
 	{
-		"companyName":"Asahi",
-		"channel":"Top Stories",
-		"link":"http://rss.asahi.com/rss/asahi/newsheadlines.rdf"
+		"companyName":"AbemaTIMES",
+		"channel":"domestic",
+		"link":"https://headlines.yahoo.co.jp/rss/abema-dom.xml"
 	}
-
 
 		
 ]}

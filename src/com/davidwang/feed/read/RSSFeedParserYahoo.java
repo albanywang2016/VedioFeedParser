@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
@@ -205,12 +206,14 @@ public class RSSFeedParserYahoo {
 								dir.mkdir();
 
 								item.setTitle(title);
-								item.setLink(link);
 								item.setPubDate(pubDate);
 								item.setTimestamp(timestamp);
 								item.setDayCreated(dayCreated);
-								item.setContents(RetrieveContents(link));
-								Image image = RetrieveImage(link, dayCreated, timestamp, fileDir);
+
+								String finalURL = getFinalURL(link);
+								item.setLink(finalURL);
+								item.setContents(RetrieveContents(finalURL));
+								Image image = RetrieveImage(finalURL, dayCreated, timestamp, fileDir);
 								if (image != null) {
 									item.setImage(image);
 									item.setHas_image(true);
@@ -384,6 +387,8 @@ public class RSSFeedParserYahoo {
 
 	private String RetrieveContents(String link) throws IOException {
 		URL url = new URL(link);
+		Document doc;
+		String results = "";
 
 		InputStream is = url.openStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -393,12 +398,24 @@ public class RSSFeedParserYahoo {
 			sb.append(line);
 		}
 
-		// get the article body
-		Document doc = Jsoup.parse(sb.toString());
+		doc = Jsoup.parse(sb.toString());
+		results = doc.getElementsByClass(Const.ARTICLE).toString();
 
-		Elements bodies = doc.getElementsByClass(Const.ARTICLE);
+		return results;
+	}
 
-		return bodies.toString();
+	public static String getFinalURL(String url) throws IOException {
+		HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
+		con.setInstanceFollowRedirects(false);
+		con.connect();
+		con.getInputStream();
+
+		if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM
+				|| con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
+			String redirectUrl = con.getHeaderField("Location");
+			return getFinalURL(redirectUrl);
+		}
+		return url;
 	}
 
 	private Image RetrieveImage(String link, String dayCreated, String timestamp, String fileDir) throws IOException {
