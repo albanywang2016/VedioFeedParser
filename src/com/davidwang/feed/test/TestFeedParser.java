@@ -123,9 +123,17 @@ public class TestFeedParser {
 								// get last update time for each source/channel
 						String last_update_from_table = getLastUpdateDate(source_name, channel);
 						System.out.println("Data_Base_date  =" + last_update_from_table);
+						if (last_update_from_table == null) {
+							last_update_from_table = "";
+						}
 
 						String lastBuildDate = parser.getLastUpdateTime(link);
 						System.out.println("last_build_date =" + lastBuildDate);
+						if (lastBuildDate == null) {
+							lastBuildDate = "";
+						}
+
+						System.out.println("source = " + source_name + ", channel = " + channel);
 
 						String previoud_last_update = getPreviousLastUpdate(source_name, channel);
 
