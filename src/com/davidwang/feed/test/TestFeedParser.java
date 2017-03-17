@@ -466,21 +466,21 @@ public class TestFeedParser {
 
 	}
 
-	private static void insertImageDB(String source_name, String channel2, Image image)
-			throws ClassNotFoundException, SQLException {
-		String sql = "";
-
-		sql = "insert into image (image_type, image_name, image_url,  width, height)" + " values (?,?,?,?,?)";
-
-		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
-
-		stmt.setString(1, image.getImage_type());
-		stmt.setString(2, image.getImage_name());
-		stmt.setString(3, image.getImage_url());
-		stmt.setInt(4, image.getWidth());
-		stmt.setInt(5, image.getHeight());
-		stmt.execute();
-
-	}
+//	private static void insertImageDB(String source_name, String channel2, Image image)
+//			throws ClassNotFoundException, SQLException {
+//		String sql = "";
+//
+//		sql = "insert into image (image_type, image_name, image_url,  width, height)" + " values (?,?,?,?,?)";
+//
+//		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
+//
+//		stmt.setString(1, image.getImage_type());
+//		stmt.setString(2, image.getImage_name());
+//		stmt.setString(3, image.getImage_url());
+//		stmt.setInt(4, image.getWidth());
+//		stmt.setInt(5, image.getHeight());
+//		stmt.execute();
+//
+//	}
 
 }
