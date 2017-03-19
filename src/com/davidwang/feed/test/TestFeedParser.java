@@ -22,7 +22,6 @@ import javax.imageio.ImageIO;
 import com.davidwang.feed.model.Feed;
 import com.davidwang.feed.model.FeedItem;
 import com.davidwang.feed.model.FeedSource;
-import com.davidwang.feed.model.Image;
 import com.davidwang.feed.read.RSSFeedParserYahoo;
 import com.davidwang.feed.utils.Const;
 import com.davidwang.feed.utils.Utils;
@@ -117,7 +116,8 @@ public class TestFeedParser {
 						}
 
 						// write to Jason file
-						writeTOJasonFile(source_name, channel, feed.getItems());
+						// writeTOJasonFile(source_name, channel,
+						// feed.getItems());
 
 					} else { // not the first time
 								// get last update time for each source/channel
@@ -238,7 +238,7 @@ public class TestFeedParser {
 			throws ClassNotFoundException, SQLException {
 
 		Statement stmt = (Statement) conn.createStatement();
-		String sql = "SELECT * FROM source.feed_source where source_name=" + "'" + source_name + "'" + " and channel="
+		String sql = "SELECT * FROM rssfeed.feed_source where source_name=" + "'" + source_name + "'" + " and channel="
 				+ "'" + channel + "'";
 		ResultSet rs = (ResultSet) stmt.executeQuery(sql);
 		if (!rs.next()) {
@@ -251,7 +251,7 @@ public class TestFeedParser {
 	private static void insertToSourceTable(String source_name, String channel)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "insert into source.feed_source (source_name, channel, created_time) " + " values (?,?,?)";
+		String sql = "insert into rssfeed.feed_source (source_name, channel, created_time) " + " values (?,?,?)";
 		PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
 		ps.setString(1, source_name);
 		ps.setString(2, channel);
@@ -302,7 +302,7 @@ public class TestFeedParser {
 		try {
 
 			stmt = (Statement) conn.createStatement();
-			String sql = "SELECT last_update_time FROM source.feed_source where source_name=" + "'" + source_name + "'"
+			String sql = "SELECT last_update_time FROM rssfeed.feed_source where source_name=" + "'" + source_name + "'"
 					+ " and channel=" + "'" + channel + "'";
 
 			rs = (ResultSet) stmt.executeQuery(sql);
@@ -333,7 +333,7 @@ public class TestFeedParser {
 		try {
 
 			stmt = (Statement) conn.createStatement();
-			String sql = "SELECT previous_last_update FROM source.feed_source where source_name=" + "'" + source_name
+			String sql = "SELECT previous_last_update FROM rssfeed.feed_source where source_name=" + "'" + source_name
 					+ "'" + " and channel=" + "'" + channel + "'";
 
 			rs = (ResultSet) stmt.executeQuery(sql);
@@ -359,7 +359,7 @@ public class TestFeedParser {
 		String sql;
 
 		try {
-			sql = "update source.feed_source set last_update_time = ?, previous_last_update = ? where source_name = ? and channel = ?";
+			sql = "update rssfeed.feed_source set last_update_time = ?, previous_last_update = ? where source_name = ? and channel = ?";
 			PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
 			stmt.setString(1, update_date);
 			stmt.setString(2, previoudLastUpdate);
@@ -380,7 +380,7 @@ public class TestFeedParser {
 		String sql = "";
 
 		try {
-			sql = "insert into message (source_name, channel, title, creator, link, description, contents, timestamp, has_image, pub_date, day_created, image_type, image_url, image_width, image_height)"
+			sql = "insert into rssfeed.message (source_name, channel, title, creator, link, description, contents, timestamp, has_image, pub_date, day_created, image_type, image_url, image_width, image_height)"
 					+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			// System.out.println(item);
@@ -466,21 +466,23 @@ public class TestFeedParser {
 
 	}
 
-//	private static void insertImageDB(String source_name, String channel2, Image image)
-//			throws ClassNotFoundException, SQLException {
-//		String sql = "";
-//
-//		sql = "insert into image (image_type, image_name, image_url,  width, height)" + " values (?,?,?,?,?)";
-//
-//		PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
-//
-//		stmt.setString(1, image.getImage_type());
-//		stmt.setString(2, image.getImage_name());
-//		stmt.setString(3, image.getImage_url());
-//		stmt.setInt(4, image.getWidth());
-//		stmt.setInt(5, image.getHeight());
-//		stmt.execute();
-//
-//	}
+	// private static void insertImageDB(String source_name, String channel2,
+	// Image image)
+	// throws ClassNotFoundException, SQLException {
+	// String sql = "";
+	//
+	// sql = "insert into image (image_type, image_name, image_url, width,
+	// height)" + " values (?,?,?,?,?)";
+	//
+	// PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
+	//
+	// stmt.setString(1, image.getImage_type());
+	// stmt.setString(2, image.getImage_name());
+	// stmt.setString(3, image.getImage_url());
+	// stmt.setInt(4, image.getWidth());
+	// stmt.setInt(5, image.getHeight());
+	// stmt.execute();
+	//
+	// }
 
 }

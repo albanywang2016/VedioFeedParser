@@ -1,8 +1,8 @@
-<?php
+ <?php
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "rssfeed";
 
-    $host = 'localhost';
-    $dbname = 'source';
-    $username = 'root';
-    $password = '';
-    
-?>
+
+?> 
