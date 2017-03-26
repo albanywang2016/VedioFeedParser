@@ -201,7 +201,7 @@ public class RSSFeedParserYahoo {
 								String dayCreated = Utils.formatTime(LocalDateTime.now());
 								String timestamp = String.valueOf(System.currentTimeMillis());
 
-								String fileDir = Const.SAVED_FOLDER + dayCreated;
+								String fileDir = Const.XAMPP_FOLDER + dayCreated;
 								File dir = new File(fileDir);
 								dir.mkdir();
 
@@ -325,7 +325,7 @@ public class RSSFeedParserYahoo {
 			String fullFIleName = fileDir + "/" + fileName;
 			image.setFullFIleName(fullFIleName);
 
-			String image_url = Const.ANDROID_CONNECT + dayCreated + "/" + fileName;
+			String image_url = Const.XAMPP_FOLDER + dayCreated + "/" + fileName;
 			image.setImage_url(image_url);
 
 		}

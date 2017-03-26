@@ -5,6 +5,8 @@ public class Const {
 
 	public static final String ANDROID_CONNECT = "http://localhost/android_connect/";
 	public static final String SAVED_FOLDER = "C:/wamp64/www/android_connect/";
+	public static final String XAMPP_FOLDER = "/Applications/XAMPP/xamppfiles/htdocs/rssfeed/";
+	public static final String XAMPP_HTTP = "http://localhost/rssfeed/";
 	public static final String IS_COALESCING = "javax.xml.stream.isCoalescing";
 
 	public static final String CHANNEL = "channel";

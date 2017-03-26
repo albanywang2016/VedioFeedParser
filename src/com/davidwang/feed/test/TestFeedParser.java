@@ -211,8 +211,8 @@ public class TestFeedParser {
 		// TODO Auto-generated method stub
 
 		String timestamp = item.getTimestamp();
-		String fileName = Const.SAVED_FOLDER + item.getDayCreated() + Const.SLASH + timestamp + Const.DOT + Const.HTML;
-		String fileNameHttp = Const.ANDROID_CONNECT + item.getDayCreated() + Const.SLASH + timestamp + Const.DOT
+		String fileName = Const.XAMPP_FOLDER + item.getDayCreated() + Const.SLASH + timestamp + Const.DOT + Const.HTML;
+		String fileNameHttp = Const.XAMPP_HTTP + item.getDayCreated() + Const.SLASH + timestamp + Const.DOT
 				+ Const.HTML;
 
 		PrintWriter writer = new PrintWriter(fileName, Const.UTF8);
