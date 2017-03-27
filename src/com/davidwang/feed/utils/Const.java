@@ -38,7 +38,7 @@ public class Const {
 	public static final String RIGHT_BRACKET = ")";
 	public static final String UTF8 = "UTF-8";
 
-	public static final String FILE_PATH = "json/TopStoriesJP.json";
+	public static final String FILE_PATH = "json/JPDomestic.json";
 	public static final String RSSFEED = "RSSFeed";
 	public static final String COMPANY_NAME = "companyName";
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
