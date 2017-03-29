@@ -44,8 +44,8 @@ public class Const {
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	public static final String FEED_SOURCE = "jdbc:mysql://localhost:3306/rssfeed?useUnicode=yes&characterEncoding=UTF-8";
 	public static final String DB_USER_NAME = "root";
-	// public static final String DB_PASSWORD = "Hongying@2017!";
-	public static final String DB_PASSWORD = "";
+	public static final String DB_PASSWORD = "Hongying@2017!";
+	//public static final String DB_PASSWORD = "";
 	public static final String MESSAGE = "message";
 	public static final String SOURCE = "rssfeed";
 	public static final String TIME = "time";
