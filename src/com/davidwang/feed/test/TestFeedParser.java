@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -71,15 +72,15 @@ public class TestFeedParser {
 				}
 
 				// First connect to DB
-				try {
-					connectToDB();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+//				try {
+//					connectToDB();
+//				} catch (ClassNotFoundException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} catch (SQLException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
 
 				// for the first time that source and channel are not in source
 				// table.
@@ -213,7 +214,7 @@ public class TestFeedParser {
 
 	}
 	
-	private void PostToServer(URL url, Map<String,Object> params) throws IOException{
+	private static Reader PostToServer(URL url, Map<String,Object> params) throws IOException{
 		
         //URL url = new URL("http://example.net/new-message.php");
 
@@ -242,6 +243,8 @@ public class TestFeedParser {
 
         for (int c; (c = in.read()) >= 0;)
             System.out.print((char)c);
+        
+        return in;
     
 	}
 
@@ -272,18 +275,31 @@ public class TestFeedParser {
 		conn = (Connection) DriverManager.getConnection(Const.FEED_SOURCE, Const.DB_USER_NAME, Const.DB_PASSWORD);
 	}
 
-	private static boolean isInSourceTable(String source_name, String channel)
-			throws ClassNotFoundException, SQLException {
+	private static boolean isInSourceTable(String source_name, String channel) throws IOException{
 
-		Statement stmt = (Statement) conn.createStatement();
-		String sql = "SELECT * FROM rssfeed.feed_source where source_name=" + "'" + source_name + "'" + " and channel="
-				+ "'" + channel + "'";
-		ResultSet rs = (ResultSet) stmt.executeQuery(sql);
-		if (!rs.next()) {
-			return false;
-		} else {
-			return true;
-		}
+//		Statement stmt = (Statement) conn.createStatement();
+//		String sql = "SELECT * FROM rssfeed.feed_source where source_name=" + "'" + source_name + "'" + " and channel="
+//				+ "'" + channel + "'";
+//		ResultSet rs = (ResultSet) stmt.executeQuery(sql);
+//		if (!rs.next()) {
+//			return false;
+//		} else {
+//			return true;
+//		}
+		URL url = new URL(Const.IS_IN_SOURCE);
+		
+		Map<String,Object> params = new LinkedHashMap<>();
+        params.put("source_name", source_name);
+        params.put("channel", channel);
+  
+        Reader in = PostToServer(url,params);
+        if(in.toString().length() != 0){
+        	return true;
+        }else{
+        	return false;	
+        }
+        
+		
 	}
 
 	private static void insertToSourceTable(String source_name, String channel)
