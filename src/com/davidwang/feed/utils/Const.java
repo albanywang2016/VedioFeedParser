@@ -54,4 +54,11 @@ public class Const {
 	public static final String CONTENTS = "contents";
 	public static final String CONTENTS_URL = "contents_url";
 
+    public static final String GET_LAST_UPDATE_TIME_PHP = "http://japannews.tech/php/get_last_update_time.php";
+    public static final String GET_PREVIOUS_LAST_UPDATE = "http://japannews.tech/php/get_previous_last_update.php";
+    public static final String INSERT_TO_MESSAGE_NO_IMAGE = "http://japannews.tech/php/insert_to_message_no_image.php";
+    public static final String INSERT_TO_MESSAGE_WITH_IMAGE = "http://japannews.tech/php/insert_to_message_with_image.php";
+    public static final String INSERT_TO_SOURCE = "http://japannews.tech/php/inseet_to_source.php";
+    public static final String IS_IN_SOURCE = "http://japannews.tech/php/is_in_source.php";
+    public static final String UPDATE_SOURCE = "http://japannews.tech/php/update_source.php";
 }
