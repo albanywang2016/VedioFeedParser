@@ -210,14 +210,14 @@ public class ParseFeed {
 		}
 
 		// after all DB task done, close the db connection
-		if (!conn.isClosed()) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+//		if (!conn.isClosed()) {
+//			try {
+//				conn.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 
 	}
 	
