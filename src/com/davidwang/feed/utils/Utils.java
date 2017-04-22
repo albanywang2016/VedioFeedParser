@@ -8,7 +8,7 @@ public class Utils {
 
 
 	public static String formatTime(LocalDateTime now) {
-		DateTimeFormatter format = DateTimeFormatter.ofPattern(Const.DATE_PATTERN_YMD);
+		DateTimeFormatter format = DateTimeFormatter.ofPattern(Const.DATE_PATTERN_YMDHM);
 		return now.format(format);
 	}
 

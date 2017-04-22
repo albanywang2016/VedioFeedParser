@@ -77,6 +77,7 @@ public class RSSFeedParserYahoo {
 						switch (localPart) {
 						case Const.LAST_BUILD_DATE:
 							lastBuildDate = getData(event, eventReader);
+							lastBuildDate = lastBuildDate.substring(0,lastBuildDate.indexOf("+") - 1);
 							return lastBuildDate;
 						}
 					}
@@ -158,9 +159,11 @@ public class RSSFeedParserYahoo {
 							break;
 						case Const.LAST_BUILD_DATE:
 							lastBuildDate = getData(event, eventReader);
+							lastBuildDate = lastBuildDate.substring(0, lastBuildDate.indexOf("+") - 1);
 							break;
 						case Const.PUB_DATE:
 							pubDate = getData(event, eventReader);
+							pubDate = pubDate.substring(0, pubDate.indexOf("+")-1);
 							if (!pubDateFound) {
 								feed.setPreviousLastUpdate(pubDate);
 							}
@@ -199,21 +202,22 @@ public class RSSFeedParserYahoo {
 								// Do nothing
 							} else {
 								String dayCreated = Utils.formatTime(LocalDateTime.now());
-								String timestamp = String.valueOf(System.currentTimeMillis());
+								//String timestamp = String.valueOf(System.currentTimeMillis());
 
-								String fileDir = Const.XAMPP_FOLDER + dayCreated;
-								File dir = new File(fileDir);
-								dir.mkdir();
+								//String fileDir = Const.XAMPP_FOLDER + dayCreated;
+								//File dir = new File(fileDir);
+								//dir.mkdir();
 
 								item.setTitle(title);
 								item.setPubDate(pubDate);
-								item.setTimestamp(timestamp);
+								//item.setTimestamp(timestamp);
 								item.setDayCreated(dayCreated);
 
 								String finalURL = getFinalURL(link);
 								item.setLink(finalURL);
-								item.setContents(RetrieveContents(finalURL));
-								Image image = RetrieveImage(finalURL, dayCreated, timestamp, fileDir);
+								//item.setContents(RetrieveContents(finalURL));
+								//Image image = RetrieveImage(finalURL, dayCreated, timestamp, fileDir);
+								Image image = GetImageInfo(finalURL);
 								if (image != null) {
 									item.setImage(image);
 									item.setHas_image(true);
@@ -285,6 +289,40 @@ public class RSSFeedParserYahoo {
 			return getFinalURL(redirectUrl);
 		}
 		return url;
+	}
+	
+	private Image GetImageInfo(String link) throws IOException{
+		Image image = null;
+		URL url = new URL(link);
+		
+		InputStream is = url.openStream();
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		StringBuilder sb = new StringBuilder();
+		String line = "";
+		while ((line = br.readLine()) != null) {
+			sb.append(line);
+		}
+		
+		Document doc = Jsoup.parse(sb.toString());
+
+		Elements bodies = doc.getElementsByClass(Const.THUMB);
+		if (bodies != null && bodies.size() != 0) {
+			image = new Image();
+
+			Document doc2 = Jsoup.parse(bodies.toString());
+			Element element = doc2.select(Const.IMG).first();
+
+			String imageURL = element.attr(Const.SRC);
+
+			image.setLink(imageURL);
+			if (imageURL.contains(Const.JPG)) {
+				image.setImage_type(Const.JPG);
+			}
+		}
+		br.close();
+		is.close();
+		
+		return image;
 	}
 
 	private Image RetrieveImage(String link, String dayCreated, String timestamp, String fileDir) throws IOException {

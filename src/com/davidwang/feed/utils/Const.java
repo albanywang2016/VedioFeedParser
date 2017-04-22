@@ -2,6 +2,7 @@ package com.davidwang.feed.utils;
 
 public class Const {
 	public static final String DATE_PATTERN_YMD = "yyyy-MM-dd";
+	public static final String DATE_PATTERN_YMDHM = "yyyy-MM-dd hh:mm";
 
 	public static final String ANDROID_CONNECT = "http://localhost/android_connect/";
 	public static final String SAVED_FOLDER = "C:/wamp64/www/android_connect/";
@@ -58,7 +59,7 @@ public class Const {
     public static final String GET_PREVIOUS_LAST_UPDATE = "http://japannews.tech/php/get_previous_last_update.php";
     public static final String INSERT_TO_MESSAGE_NO_IMAGE = "http://japannews.tech/php/insert_to_message_no_image.php";
     public static final String INSERT_TO_MESSAGE_WITH_IMAGE = "http://japannews.tech/php/insert_to_message_with_image.php";
-    public static final String INSERT_TO_SOURCE = "http://japannews.tech/php/inseet_to_source.php";
+    public static final String INSERT_TO_SOURCE = "http://japannews.tech/php/insert_to_source.php";
     public static final String IS_IN_SOURCE = "http://japannews.tech/php/is_in_source.php";
     public static final String UPDATE_SOURCE = "http://japannews.tech/php/update_source.php";
 }

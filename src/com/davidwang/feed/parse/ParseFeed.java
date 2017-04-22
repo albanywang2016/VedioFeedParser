@@ -104,9 +104,14 @@ public class ParseFeed {
 //									} catch (Exception e) {
 //										e.printStackTrace();
 //									}
-									BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
-									item.getImage().setWidth(bimg.getWidth());
-									item.getImage().setHeight(bimg.getHeight());
+									//BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
+									//item.getImage().setWidth(bimg.getWidth());
+									//item.getImage().setHeight(bimg.getHeight());
+									URL imageURL = new URL(item.getImage().getLink());
+									System.out.println("imageurl = " + imageURL);
+									BufferedImage img = ImageIO.read(imageURL);
+									item.getImage().setWidth(img.getWidth());
+									item.getImage().setHeight(img.getHeight());
 									InsertMessageWithImage(source_name, channel,item);
 
 								}else{
@@ -158,9 +163,15 @@ public class ParseFeed {
 									if (item.isHas_image()) {
 										//parser.saveImgToFile(item.getImage().getFullFIleName(),
 										//		item.getImage().getLink());
-										BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
-										item.getImage().setWidth(bimg.getWidth());
-										item.getImage().setHeight(bimg.getHeight());
+										//BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
+										//item.getImage().setWidth(bimg.getWidth());
+										//item.getImage().setHeight(bimg.getHeight());
+										URL imageURL = new URL(item.getImage().getLink());
+										System.out.println("imageurl = " + imageURL);
+										BufferedImage img = ImageIO.read(imageURL);
+										item.getImage().setWidth(img.getWidth());
+										item.getImage().setHeight(img.getHeight());
+										
 										InsertMessageWithImage(source_name, channel,item);
 									}else{
 										InsertMessageNoImage(source_name,channel,item);
@@ -236,12 +247,18 @@ public class ParseFeed {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
-        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
-        for (int c; (c = in.read()) >= 0;){
-        	builder.append(c);
+        String line;
+        while ((line= in.readLine()) != null){
+        	builder.append(line);
         }
-          
+        
+//        for (int c; (c = in.read()) >= 0;){
+//        	builder.append((char)c);
+//        }
+        System.out.println(builder.toString());
+        
         return builder.toString();
     
 	}
@@ -292,7 +309,7 @@ public class ParseFeed {
   
         String results = PostToServer(url,params);
         
-        if(results.contains("Could not get id")){
+        if(results.contains("Error")){
         	return false;
         }else{
         	return true;	
@@ -483,14 +500,17 @@ public class ParseFeed {
         params.put("channel", channel);
         params.put("title", item.getTitle());
         params.put("link", item.getLink());
-        params.put("has_image", item.isHas_image());
+        params.put("has_image", 1);
         params.put("pub_date", item.getPubDate());
         params.put("day_created", item.getDayCreated());
         params.put("image_type", item.getImage().getImage_type());
-        params.put("image_url", item.getImage().getImage_url());
-        params.put("image_width", item.getImage().getWidth());
-        params.put("image_height",item.getImage().getHeight());
+        params.put("image_url", item.getImage().getLink());
+        params.put("image_width", (int)item.getImage().getWidth());
+        params.put("image_height",(int)item.getImage().getHeight());
   
+        //System.out.println("image_width" + item.getImage().getWidth());
+        //System.out.println("image_height" + item.getImage().getHeight());
+        
         String results = PostToServer(url,params);
 		
 	}
