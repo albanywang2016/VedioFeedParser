@@ -47,122 +47,67 @@ public class ParseFeed {
 	static Connection conn;
 
 	public static void main(String[] args) {
+		
+		String [] allFeeds = {Const.JPDOMESTIC_JSON,Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON, Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON, Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON};
+		
+		for(String feed_path : allFeeds){
+			
+			List<FeedSource> feedSource = new ArrayList<FeedSource>();
 
-		List<FeedSource> feedSource = new ArrayList<FeedSource>();
+			feedSource = ParseFile(readFile(feed_path));
 
-		feedSource = ParseFile(readFile(Const.FILE_PATH));
+			for (FeedSource fs : feedSource) {
+				if (!fs.getLink().isEmpty()) {
 
-		for (FeedSource fs : feedSource) {
-			if (!fs.getLink().isEmpty()) {
+					String source_name = fs.getCompanyName().trim();
+					String channel = fs.getChannel().trim();
+					String link = fs.getLink();
+					RSSFeedParserYahoo parser = new RSSFeedParserYahoo();
 
-				String source_name = fs.getCompanyName().trim();
-				String channel = fs.getChannel().trim();
-				String link = fs.getLink();
-				RSSFeedParserYahoo parser = new RSSFeedParserYahoo();
+					if (source_name.isEmpty() || channel.isEmpty()) {
+						System.out.println("source name and channel should not be empty!");
+						break;
+					}
 
-				if (source_name.isEmpty() || channel.isEmpty()) {
-					System.out.println("source name and channel should not be empty!");
-					break;
-				}
+					// First connect to DB
+//					try {
+//						connectToDB();
+//					} catch (ClassNotFoundException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					} catch (SQLException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
 
-				// First connect to DB
-//				try {
-//					connectToDB();
-//				} catch (ClassNotFoundException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				} catch (SQLException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
+					// for the first time that source and channel are not in source
+					// table.
+					// insert to source table and parse the feed, incert to message
+					// table and image table.
+					try {
+						if (!isInSourceTable(source_name, channel)) {
+							insertToSourceTable(source_name, channel);
 
-				// for the first time that source and channel are not in source
-				// table.
-				// insert to source table and parse the feed, incert to message
-				// table and image table.
-				try {
-					if (!isInSourceTable(source_name, channel)) {
-						insertToSourceTable(source_name, channel);
+							// parse the feed
+							Feed feed = parser.readFeed(source_name, channel, link, "", true);
+							// System.out.println(feed);
 
-						// parse the feed
-						Feed feed = parser.readFeed(source_name, channel, link, "", true);
-						// System.out.println(feed);
-
-						// update feed source table
-						updateFeedSourceDB(source_name, channel, feed.getLastBuildDate(), feed.getPreviousLastUpdate());
-
-						// if message has image, write to image DB
-						for (FeedItem item : feed.getItems()) {
-
-							//String contentsFileURL = writeToHTML(item);
-							//item.setLink(contentsFileURL);
-
-								if (item.isHas_image()) {
-//									try {
-//										parser.saveImgToFile(item.getImage().getFullFIleName(),
-//												item.getImage().getLink());
-//									} catch (Exception e) {
-//										e.printStackTrace();
-//									}
-									//BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
-									//item.getImage().setWidth(bimg.getWidth());
-									//item.getImage().setHeight(bimg.getHeight());
-									URL imageURL = new URL(item.getImage().getLink());
-									System.out.println("imageurl = " + imageURL);
-									BufferedImage img = ImageIO.read(imageURL);
-									item.getImage().setWidth(img.getWidth());
-									item.getImage().setHeight(img.getHeight());
-									InsertMessageWithImage(source_name, channel,item);
-
-								}else{
-									InsertMessageNoImage(source_name,channel,item);
-								}
-								// insert Item
-								//insertItemDB(source_name, channel, contentsFileURL, item);
-
-						}
-
-						// write to Jason file
-						// writeTOJasonFile(source_name, channel,
-						// feed.getItems());
-
-					} else { // not the first time
-								// get last update time for each source/channel
-						String last_update_from_table = getLastUpdateDate(source_name, channel);
-						System.out.println("Data_Base_date  =" + last_update_from_table);
-						if (last_update_from_table == null) {
-							last_update_from_table = "";
-						}
-
-						String lastBuildDate = parser.getLastUpdateTime(link);
-						System.out.println("last_build_date =" + lastBuildDate);
-						if (lastBuildDate == null) {
-							lastBuildDate = "";
-						}
-
-						System.out.println("source = " + source_name + ", channel = " + channel);
-
-						String previoud_last_update = getPreviousLastUpdate(source_name, channel);
-
-						// there is new update in the feed
-						if (!last_update_from_table.equalsIgnoreCase(lastBuildDate)) {
-
-							// List<String > titleList =
-							// getAllCurrentTitles(source_name,channel);
-
-							Feed feed = parser.readFeed(source_name, channel, link, previoud_last_update, false);
-
-							updateFeedSourceDB(source_name, channel, lastBuildDate, feed.getPreviousLastUpdate());
+							// update feed source table
+							updateFeedSourceDB(source_name, channel, feed.getLastBuildDate(), feed.getPreviousLastUpdate());
 
 							// if message has image, write to image DB
 							for (FeedItem item : feed.getItems()) {
 
 								//String contentsFileURL = writeToHTML(item);
-
+								//item.setLink(contentsFileURL);
 
 									if (item.isHas_image()) {
-										//parser.saveImgToFile(item.getImage().getFullFIleName(),
-										//		item.getImage().getLink());
+//										try {
+//											parser.saveImgToFile(item.getImage().getFullFIleName(),
+//													item.getImage().getLink());
+//										} catch (Exception e) {
+//											e.printStackTrace();
+//										}
 										//BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
 										//item.getImage().setWidth(bimg.getWidth());
 										//item.getImage().setHeight(bimg.getHeight());
@@ -171,53 +116,115 @@ public class ParseFeed {
 										BufferedImage img = ImageIO.read(imageURL);
 										item.getImage().setWidth(img.getWidth());
 										item.getImage().setHeight(img.getHeight());
-										
 										InsertMessageWithImage(source_name, channel,item);
+
 									}else{
 										InsertMessageNoImage(source_name,channel,item);
 									}
 									// insert Item
 									//insertItemDB(source_name, channel, contentsFileURL, item);
+
 							}
-						} else {
-							System.out.println("feed message is up to date, no DB update required for " + source_name
-									+ " and " + channel);
+
+							// write to Jason file
+							// writeTOJasonFile(source_name, channel,
+							// feed.getItems());
+
+						} else { // not the first time
+									// get last update time for each source/channel
+							String last_update_from_table = getLastUpdateDate(source_name, channel);
+							System.out.println("Data_Base_date  =" + last_update_from_table);
+							if (last_update_from_table == null) {
+								last_update_from_table = "";
+							}
+
+							String lastBuildDate = parser.getLastUpdateTime(link);
+							System.out.println("last_build_date =" + lastBuildDate);
+							if (lastBuildDate == null) {
+								lastBuildDate = "";
+							}
+
+							System.out.println("source = " + source_name + ", channel = " + channel);
+
+							String previoud_last_update = getPreviousLastUpdate(source_name, channel);
+
+							// there is new update in the feed
+							if (!last_update_from_table.equalsIgnoreCase(lastBuildDate)) {
+
+								// List<String > titleList =
+								// getAllCurrentTitles(source_name,channel);
+
+								Feed feed = parser.readFeed(source_name, channel, link, previoud_last_update, false);
+
+								updateFeedSourceDB(source_name, channel, lastBuildDate, feed.getPreviousLastUpdate());
+
+								// if message has image, write to image DB
+								for (FeedItem item : feed.getItems()) {
+
+									//String contentsFileURL = writeToHTML(item);
+
+
+										if (item.isHas_image()) {
+											//parser.saveImgToFile(item.getImage().getFullFIleName(),
+											//		item.getImage().getLink());
+											//BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
+											//item.getImage().setWidth(bimg.getWidth());
+											//item.getImage().setHeight(bimg.getHeight());
+											URL imageURL = new URL(item.getImage().getLink());
+											System.out.println("imageurl = " + imageURL);
+											BufferedImage img = ImageIO.read(imageURL);
+											item.getImage().setWidth(img.getWidth());
+											item.getImage().setHeight(img.getHeight());
+											
+											InsertMessageWithImage(source_name, channel,item);
+										}else{
+											InsertMessageNoImage(source_name,channel,item);
+										}
+										// insert Item
+										//insertItemDB(source_name, channel, contentsFileURL, item);
+								}
+							} else {
+								System.out.println("feed message is up to date, no DB update required for " + source_name
+										+ " and " + channel);
+							}
 						}
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
-		}
 
-		// after all DB task done, close the db connection
-//		if (!conn.isClosed()) {
-//			try {
-//				conn.close();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
+			// after all DB task done, close the db connection
+//			if (!conn.isClosed()) {
+//				try {
+//					conn.close();
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 //			}
-//		}
+		}
+		
+
 
 	}
 	

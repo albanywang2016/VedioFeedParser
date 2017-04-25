@@ -1,0 +1,346 @@
+{"RSSFeed":[
+
+	{
+		"companyName":"AbemaTIMES",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/abema-c_ent.xml"
+	},
+
+	{
+		"companyName":"cinemacafe.net",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/cine-c_ent.xml"
+	},
+
+	{
+		"companyName":"dmenu映画",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/dmenueiga-c_ent.xml"
+	},
+
+	{
+		"companyName":"ELLE ONLINE",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/elleonline-c_ent.xml"
+	},
+
+	{
+		"companyName":"IGN JAPAN",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/ignjapan-c_ent.xml"
+	},
+
+	{
+		"companyName":"ITmedia LifeStyle",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/zdn_lp-c_ent.xml"
+	},
+
+	{
+		"companyName":"J-CASTニュース",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/jct-c_ent.xml"
+	},
+
+	{
+		"companyName":"Movie Walker",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/mvwalk-c_ent.xml"
+	},
+
+	{
+		"companyName":"RO69（アールオーロック）",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/rorock-c_ent.xml"
+	},
+
+	{
+		"companyName":"Stereo Sound ONLINE",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/ssonline-c_ent.xml"
+	},
+
+	{
+		"companyName":"TOKYO FM＋",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/tokyofm-c_ent.xml"
+	},
+
+	{
+		"companyName":"WoW!Korea",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/wow-c_ent.xml"
+	},
+
+	{
+		"companyName":"アフロ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/storyfulv-c_ent.xml"
+	},
+
+	{
+		"companyName":"映画.com",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/eiga-c_ent.xml"
+	},
+
+	{
+		"companyName":"エキサイトミュージック",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/exmusic-c_ent.xml"
+	},
+
+	{
+		"companyName":"お笑いナタリー",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/natalieo-c_ent.xml"
+	},
+
+	{
+		"companyName":"カナロコ by 神奈川新聞",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/kana-c_ent.xml"
+	},
+
+	{
+		"companyName":"クランクイン！",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/crankinn-c_ent.xml"
+	},
+
+	{
+		"companyName":"産経新聞",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/san-c_ent.xml"
+	},
+
+	{
+		"companyName":"シネマトゥデイ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/flix-c_ent.xml"
+	},
+
+	{
+		"companyName":"スポーツ報知",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/sph-c_ent.xml"
+	},
+
+	{
+		"companyName":"朝鮮日報日本語版",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/chosun-c_ent.xml"
+	},
+
+	{
+		"companyName":"東スポWeb",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/tospoweb-c_ent.xml"
+	},
+
+	{
+		"companyName":"西日本スポーツ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/nishispo-c_ent.xml"
+	},
+
+	{
+		"companyName":"日刊スポーツ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/nksports-c_ent.xml"
+	},
+
+	{
+		"companyName":"ねとらぼ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/it_nlab-c_ent.xml"
+	},
+
+	{
+		"companyName":"ホウドウキョク",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/houdouk-c_ent.xml"
+	},
+
+	{
+		"companyName":"リアルライブ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/reallive-c_ent.xml"
+	},
+
+	{
+		"companyName":"聯合ニュース",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/yonh-c_ent.xml"
+	},
+
+	{
+		"companyName":"BuzzFeed Japan",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/bfj-c_ent.xml"
+	},
+
+	{
+		"companyName":"CINRA.NET",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/cinranet-c_ent.xml"
+	},
+
+	{
+		"companyName":"ELLEgirl",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/ellegirl-c_ent.xml"
+	},
+
+	{
+		"companyName":"E-TALENTBANK",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/etalent-c_ent.xml"
+	},
+
+	{
+		"companyName":"Impress Watch",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/impress-c_ent.xml"
+	},
+
+	{
+		"companyName":"ITmedia NEWS",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/zdn_n-c_ent.xml"
+	},
+
+	{
+		"companyName":"Lmaga.jp",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/lmaga-c_ent.xml"
+	},
+
+	{
+		"companyName":"MusicVoice",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/musicv-c_ent.xml"
+	},
+
+	{
+		"companyName":"SENSORS",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/sensors-c_ent.xml"
+	},
+
+	{
+		"companyName":"THE PAGE",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/wordleaf-c_ent.xml"
+	},
+
+	{
+		"companyName":"withnews",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/withnews-c_ent.xml"
+	},
+
+	{
+		"companyName":"朝日新聞デジタル",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/asahik-c_ent.xml"
+	},
+
+	{
+		"companyName":"インサイド",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/isd-c_ent.xml"
+	},
+
+	{
+		"companyName":"映画ナタリー",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/nataliee-c_ent.xml"
+	},
+
+	{
+		"companyName":"沖縄タイムス",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/okinawat-c_ent.xml"
+	},
+
+	{
+		"companyName":"音楽ナタリー",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/natalien-c_ent.xml"
+	},
+
+	{
+		"companyName":"ギズモード・ジャパン",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/giz-c_ent.xml"
+	},
+
+	{
+		"companyName":"コミックナタリー",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/nataliec-c_ent.xml"
+	},
+
+	{
+		"companyName":"サンケイスポーツ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/sanspo-c_ent.xml"
+	},
+
+	{
+		"companyName":"スポニチアネックス",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/spnannex-c_ent.xml"
+	},
+
+	{
+		"companyName":"チケットぴあ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/pia-c_ent.xml"
+	},
+
+	{
+		"companyName":"デビュー",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/devi-c_ent.xml"
+	},
+
+	{
+		"companyName":"トレンドニュース（GYAO）",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/trendnewsn-c_ent.xml"
+	},
+
+	{
+		"companyName":"日刊ゲンダイDIGITAL",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/nkgendai-c_ent.xml"
+	},
+
+	{
+		"companyName":"ニッポン放送「しゃベル」",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/nshaberu-c_ent.xml"
+	},
+
+	{
+		"companyName":"ぴあ映画生活",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/piaeiga-c_ent.xml"
+	},
+
+	{
+		"companyName":"夕刊フジ",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/ykf-c_ent.xml"
+	},
+
+	{
+		"companyName":"レスポンス",
+		"channel":"Entertainment",
+		"link":"https://headlines.yahoo.co.jp/rss/rps-c_ent.xml"
+	}
+	
+	
+]}
