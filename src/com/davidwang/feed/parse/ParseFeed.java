@@ -492,9 +492,11 @@ public class ParseFeed {
         params.put("channel", channel);
         params.put("title", item.getTitle());
         params.put("link", item.getLink());
+        params.put("content", item.getContents());
         params.put("pub_date", item.getPubDate());
         params.put("day_created", item.getDayCreated());
   
+        //System.out.println("contents = " + item.getContents());
         String results = PostToServer(url,params);
 	}
 	
@@ -507,6 +509,7 @@ public class ParseFeed {
         params.put("channel", channel);
         params.put("title", item.getTitle());
         params.put("link", item.getLink());
+        params.put("content",item.getContents());
         params.put("has_image", 1);
         params.put("pub_date", item.getPubDate());
         params.put("day_created", item.getDayCreated());
