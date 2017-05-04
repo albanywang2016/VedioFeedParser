@@ -1,0 +1,49 @@
+{"RSSFeed":[
+
+	{
+		"companyName":"Main",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/rss.xml"
+	},
+
+	{
+		"companyName":"World",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/world/rss.xml"
+	},
+	{
+		"companyName":"Entertainment",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/entertainment/rss.xml"
+	},
+	{
+		"companyName":"IT",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/computer/rss.xml"
+	},
+	{
+		"companyName":"Local",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/local/rss.xml"
+	},
+	{
+		"companyName":"Domestic",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/domestic/rss.xml"
+	},
+	{
+		"companyName":"Economy",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/economy/rss.xml"
+	},
+	{
+		"companyName":"Sports",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/sports/rss.xml"
+	},
+	{
+		"companyName":"Science",
+		"channel":"Topic",
+		"link":"https://news.yahoo.co.jp/pickup/science/rss.xml"
+	}
+]}

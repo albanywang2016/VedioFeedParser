@@ -48,7 +48,7 @@ public class ParseFeed {
 
 	public static void main(String[] args) {
 		
-		String [] allFeeds = {Const.JPDOMESTIC_JSON,Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON, Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON, Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON};
+		String [] allFeeds = {Const.JPTOPIC_JSON, Const.JPDOMESTIC_JSON,Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON, Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON, Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON};
 		
 		for(String feed_path : allFeeds){
 			

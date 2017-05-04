@@ -40,6 +40,7 @@ public class Const {
 	public static final String UTF8 = "UTF-8";
 
 	public static final String FILE_PATH = "json/JPDomestic.json";
+	public static final String JPTOPIC_JSON = "json/JPTopic.json";
 	public static final String JPDOMESTIC_JSON = "json/JPDomestic.json";
 	public static final String JPINTERNATIONAL_JSON = "json/JPInternational.json";
 	public static final String JPBUSINESS_JSON = "json/JPBusiness.json";
