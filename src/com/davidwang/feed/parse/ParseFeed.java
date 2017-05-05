@@ -48,7 +48,7 @@ public class ParseFeed {
 
 	public static void main(String[] args) {
 		
-		String [] allFeeds = {Const.JPTOPIC_JSON, Const.JPDOMESTIC_JSON,Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON, Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON, Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON};
+		String [] allFeeds = {Const.JPDOMESTIC_JSON,Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON, Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON, Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON};
 		
 		for(String feed_path : allFeeds){
 			
@@ -68,17 +68,6 @@ public class ParseFeed {
 						System.out.println("source name and channel should not be empty!");
 						break;
 					}
-
-					// First connect to DB
-//					try {
-//						connectToDB();
-//					} catch (ClassNotFoundException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					} catch (SQLException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
 
 					// for the first time that source and channel are not in source
 					// table.
@@ -212,16 +201,6 @@ public class ParseFeed {
 					}
 				}
 			}
-
-			// after all DB task done, close the db connection
-//			if (!conn.isClosed()) {
-//				try {
-//					conn.close();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
 		}
 		
 
@@ -230,13 +209,6 @@ public class ParseFeed {
 	
 	private static String PostToServer(URL url, Map<String,Object> params) throws IOException{
 		StringBuilder builder = new StringBuilder();
-		
-        //URL url = new URL("http://example.net/new-message.php");
-
-//        params.put("name", "Freddie the Fish");
-//        params.put("email", "fishie@seamail.example.com");
-//        params.put("reply_to_thread", 10394);
-//        params.put("message", "Shark attacks in Botany Bay have gotten out of control. We need more defensive dolphins to protect the schools here, but Mayor Porpoise is too busy stuffing his snout with lobsters. He's so shellfish.");
 
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String,Object> param : params.entrySet()) {
@@ -270,44 +242,8 @@ public class ParseFeed {
     
 	}
 
-	private static String writeToHTML(FeedItem item) throws FileNotFoundException, UnsupportedEncodingException {
-		// TODO Auto-generated method stub
-
-		String timestamp = item.getTimestamp();
-		//String fileName = Const.XAMPP_FOLDER + item.getDayCreated() + Const.SLASH + timestamp + Const.DOT + Const.HTML;
-		String fileNameHttp = Const.XAMPP_HTTP + item.getDayCreated() + Const.SLASH + timestamp + Const.DOT
-				+ Const.HTML;
-
-		PrintWriter writer = new PrintWriter(fileNameHttp, Const.UTF8);
-		writer.println("<html>");
-		writer.println("<head>");
-		writer.println("<meta charset=UTF-8>");
-
-		writer.print(item.getContents());
-		writer.println("</head>");
-		writer.println("</html>");
-
-		writer.close();
-
-		return fileNameHttp;
-	}
-
-	private static void connectToDB() throws ClassNotFoundException, SQLException {
-		Class.forName(Const.JDBC_DRIVER);
-		conn = (Connection) DriverManager.getConnection(Const.FEED_SOURCE, Const.DB_USER_NAME, Const.DB_PASSWORD);
-	}
-
 	private static boolean isInSourceTable(String source_name, String channel) throws IOException{
 
-//		Statement stmt = (Statement) conn.createStatement();
-//		String sql = "SELECT * FROM rssfeed.feed_source where source_name=" + "'" + source_name + "'" + " and channel="
-//				+ "'" + channel + "'";
-//		ResultSet rs = (ResultSet) stmt.executeQuery(sql);
-//		if (!rs.next()) {
-//			return false;
-//		} else {
-//			return true;
-//		}
 		URL url = new URL(Const.IS_IN_SOURCE);
 		
 		Map<String,Object> params = new LinkedHashMap<>();
@@ -327,13 +263,6 @@ public class ParseFeed {
 
 	private static void insertToSourceTable(String source_name, String channel)
 			throws ClassNotFoundException, SQLException, IOException {
-
-//		String sql = "insert into rssfeed.feed_source (source_name, channel, created_time) " + " values (?,?,?)";
-//		PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
-//		ps.setString(1, source_name);
-//		ps.setString(2, channel);
-//		ps.setString(3, Utils.formatTime(LocalDateTime.now()));
-//		ps.execute();
 		
 		URL url = new URL(Const.INSERT_TO_SOURCE);
 		
@@ -380,29 +309,6 @@ public class ParseFeed {
 	}
 
 	private static String getLastUpdateDate(String source_name, String channel) throws SQLException, IOException {
-		String date = "";
-
-		// DriverMnager is an old way
-//		Statement stmt = null;
-//		ResultSet rs = null;
-//		try {
-//
-//			stmt = (Statement) conn.createStatement();
-//			String sql = "SELECT last_update_time FROM rssfeed.feed_source where source_name=" + "'" + source_name + "'"
-//					+ " and channel=" + "'" + channel + "'";
-//
-//			rs = (ResultSet) stmt.executeQuery(sql);
-//			while (rs.next()) {
-//				date = rs.getString(1);
-//				// System.out.println("date =" + date);
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			stmt.close();
-//
-//		}
 
 		URL url = new URL(Const.GET_LAST_UPDATE_TIME_PHP);
 		
@@ -417,28 +323,6 @@ public class ParseFeed {
 	}
 
 	private static String getPreviousLastUpdate(String source_name, String channel) throws SQLException, IOException {
-		String date = "";
-
-		// DriverMnager is an old way
-//		Statement stmt = null;
-//		ResultSet rs = null;
-//		try {
-//
-//			stmt = (Statement) conn.createStatement();
-//			String sql = "SELECT previous_last_update FROM rssfeed.feed_source where source_name=" + "'" + source_name
-//					+ "'" + " and channel=" + "'" + channel + "'";
-//
-//			rs = (ResultSet) stmt.executeQuery(sql);
-//			while (rs.next()) {
-//				date = rs.getString(1);
-//				// System.out.println("date =" + date);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			stmt.close();
-//		}
-
 		URL url = new URL(Const.GET_PREVIOUS_LAST_UPDATE);
 		
 		Map<String,Object> params = new LinkedHashMap<>();
@@ -453,22 +337,6 @@ public class ParseFeed {
 
 	private static void updateFeedSourceDB(String source_name, String channel, String last_update_time,
 			String previous_last_update) throws SQLException, IOException {
-		String sql;
-
-//		try {
-//			sql = "update rssfeed.feed_source set last_update_time = ?, previous_last_update = ? where source_name = ? and channel = ?";
-//			PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
-//			stmt.setString(1, update_date);
-//			stmt.setString(2, previoudLastUpdate);
-//			stmt.setString(3, companyName);
-//			stmt.setString(4, channel);
-//			stmt.executeUpdate();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//
-//		}
 
 		URL url = new URL(Const.UPDATE_SOURCE);
 		
@@ -524,115 +392,6 @@ public class ParseFeed {
         String results = PostToServer(url,params);
 		
 	}
-	
-	private static void insertItemDB(String sourceName, String channel, String contentsFileURL, FeedItem item)
-			throws SQLException, ClassNotFoundException {
-		String sql = "";
 
-		try {
-			sql = "insert into rssfeed.message (source_name, channel, title, creator, link, description, contents, timestamp, has_image, pub_date, day_created, image_type, image_url, image_width, image_height)"
-					+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-			// System.out.println(item);
-			// System.out.println("title = " + title);
-			if (item.getTitle().isEmpty() || sourceName.isEmpty() || channel.isEmpty()) {
-				System.out.println(
-						"source_name = " + sourceName + ", channel = " + channel + ", title = " + item.getTitle());
-			} else {
-				PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
-
-				stmt.setString(1, sourceName);
-				stmt.setString(2, channel);
-				stmt.setString(3, item.getTitle());
-				stmt.setString(4, sourceName);
-				stmt.setString(5, contentsFileURL);
-				stmt.setString(6, item.getTitle());
-				stmt.setString(7, item.getContents());
-				stmt.setString(8, item.getTimestamp());
-				stmt.setBoolean(9, item.isHas_image());
-				stmt.setString(10, item.getPubDate());
-				stmt.setString(11, item.getDayCreated());
-
-				String image_type = "";
-				String image_url = "";
-				int image_width = 0;
-				int image_height = 0;
-
-				if (item.isHas_image()) {
-					image_type = item.getImage().getImage_type();
-					image_url = item.getImage().getImage_url();
-					image_width = item.getImage().getWidth();
-					image_height = item.getImage().getHeight();
-				}
-
-				stmt.setString(12, image_type);
-				stmt.setString(13, image_url);
-				stmt.setInt(14, image_width);
-				stmt.setInt(15, image_height);
-
-				stmt.execute();
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("insert been rejected due to trying insert duplicate key to feed_item table!!!");
-		} finally {
-
-		}
-
-	}
-
-	private static void writeTOJasonFile(String source_name, String channel, List<FeedItem> items) throws IOException {
-		// TODO Auto-generated method stub
-
-		FileWriter writer = new FileWriter(source_name + Utils.formatTime(LocalDateTime.now()) + ".json");
-
-		JsonObject obj;
-		JsonArray array = new JsonArray();
-		String image_url = "";
-
-		for (int i = 0; i < items.size(); i++) {
-			FeedItem item = items.get(i);
-
-			JsonObject itemMsg = new JsonObject();
-
-			if (item.isHas_image()) {
-				image_url = item.getImage().getImage_url();
-			}
-
-			itemMsg = Json.object().add(Const.SOURCE_NAME, source_name).add(Const.CHANNEL, channel)
-					.add(Const.TITLE, item.getTitle()).add(Const.TIME, item.getPubDate()).add(Const.LINK, image_url)
-					.add(Const.CONTENTS_URL, item.getLink());
-
-			array.add(itemMsg);
-
-		}
-		obj = new JsonObject().add(Const.ITEM, array);
-
-		obj.writeTo(writer, WriterConfig.PRETTY_PRINT);
-
-		writer.flush();
-		writer.close();
-
-	}
-
-	// private static void insertImageDB(String source_name, String channel2,
-	// Image image)
-	// throws ClassNotFoundException, SQLException {
-	// String sql = "";
-	//
-	// sql = "insert into image (image_type, image_name, image_url, width,
-	// height)" + " values (?,?,?,?,?)";
-	//
-	// PreparedStatement stmt = (PreparedStatement) conn.prepareStatement(sql);
-	//
-	// stmt.setString(1, image.getImage_type());
-	// stmt.setString(2, image.getImage_name());
-	// stmt.setString(3, image.getImage_url());
-	// stmt.setInt(4, image.getWidth());
-	// stmt.setInt(5, image.getHeight());
-	// stmt.execute();
-	//
-	// }
 
 }
