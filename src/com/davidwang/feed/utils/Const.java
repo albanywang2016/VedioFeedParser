@@ -50,15 +50,14 @@ public class Const {
 	public static final String JPLIFE_JSON = "json/JPLife.json";
 	public static final String JPLOCAL_JSON = "json/JPLocal.json";
 	public static final String JPMAGAZINE_JSON = "json/JPMagazine.json";
-	
-	
+
 	public static final String RSSFEED = "RSSFeed";
 	public static final String COMPANY_NAME = "companyName";
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	public static final String FEED_SOURCE = "jdbc:mysql://localhost:3306/rssfeed?useUnicode=yes&characterEncoding=UTF-8";
 	public static final String DB_USER_NAME = "root";
 	public static final String DB_PASSWORD = "Hongying@2017!";
-	//public static final String DB_PASSWORD = "";
+	// public static final String DB_PASSWORD = "";
 	public static final String MESSAGE = "message";
 	public static final String SOURCE = "rssfeed";
 	public static final String TIME = "time";
@@ -67,11 +66,11 @@ public class Const {
 	public static final String CONTENTS = "contents";
 	public static final String CONTENTS_URL = "contents_url";
 
-    public static final String GET_LAST_UPDATE_TIME_PHP = "http://japannews.tech/php/get_last_update_time.php";
-    public static final String GET_PREVIOUS_LAST_UPDATE = "http://japannews.tech/php/get_previous_last_update.php";
-    public static final String INSERT_TO_MESSAGE_NO_IMAGE = "http://japannews.tech/php/insert_to_message_no_image.php";
-    public static final String INSERT_TO_MESSAGE_WITH_IMAGE = "http://japannews.tech/php/insert_to_message_with_image.php";
-    public static final String INSERT_TO_SOURCE = "http://japannews.tech/php/insert_to_source.php";
-    public static final String IS_IN_SOURCE = "http://japannews.tech/php/is_in_source.php";
-    public static final String UPDATE_SOURCE = "http://japannews.tech/php/update_source.php";
+	public static final String GET_LAST_UPDATE_TIME_PHP = "http://japannews.tech/php/get_last_update_time.php";
+	public static final String GET_PREVIOUS_LAST_UPDATE = "http://japannews.tech/php/get_previous_last_update.php";
+	public static final String INSERT_TO_MESSAGE_NO_IMAGE = "http://japannews.tech/php/insert_to_message_no_image.php";
+	public static final String INSERT_TO_MESSAGE_WITH_IMAGE = "http://japannews.tech/php/insert_to_message_with_image.php";
+	public static final String INSERT_TO_SOURCE = "http://japannews.tech/php/insert_to_source.php";
+	public static final String IS_IN_SOURCE = "http://japannews.tech/php/is_in_source.php";
+	public static final String UPDATE_SOURCE = "http://japannews.tech/php/update_source.php";
 }

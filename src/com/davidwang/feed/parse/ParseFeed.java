@@ -2,20 +2,15 @@ package com.davidwang.feed.parse;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.sql.DriverManager;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -34,24 +29,21 @@ import com.davidwang.feed.utils.Const;
 import com.davidwang.feed.utils.Utils;
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
-import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
-import com.eclipsesource.json.WriterConfig;
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
-import com.mysql.jdbc.Statement;
 
 public class ParseFeed {
 
 	static Connection conn;
 
 	public static void main(String[] args) {
-		
-		String [] allFeeds = {Const.JPDOMESTIC_JSON,Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON, Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON, Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON};
-		
-		for(String feed_path : allFeeds){
-			
+
+		String[] allFeeds = { Const.JPDOMESTIC_JSON, Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON,
+				Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON,
+				Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON };
+
+		for (String feed_path : allFeeds) {
+
 			List<FeedSource> feedSource = new ArrayList<FeedSource>();
 
 			feedSource = ParseFile(readFile(feed_path));
@@ -69,9 +61,11 @@ public class ParseFeed {
 						break;
 					}
 
-					// for the first time that source and channel are not in source
+					// for the first time that source and channel are not in
+					// source
 					// table.
-					// insert to source table and parse the feed, incert to message
+					// insert to source table and parse the feed, incert to
+					// message
 					// table and image table.
 					try {
 						if (!isInSourceTable(source_name, channel)) {
@@ -82,36 +76,39 @@ public class ParseFeed {
 							// System.out.println(feed);
 
 							// update feed source table
-							updateFeedSourceDB(source_name, channel, feed.getLastBuildDate(), feed.getPreviousLastUpdate());
+							updateFeedSourceDB(source_name, channel, feed.getLastBuildDate(),
+									feed.getPreviousLastUpdate());
 
 							// if message has image, write to image DB
 							for (FeedItem item : feed.getItems()) {
 
-								//String contentsFileURL = writeToHTML(item);
-								//item.setLink(contentsFileURL);
+								// String contentsFileURL = writeToHTML(item);
+								// item.setLink(contentsFileURL);
 
-									if (item.isHas_image()) {
-//										try {
-//											parser.saveImgToFile(item.getImage().getFullFIleName(),
-//													item.getImage().getLink());
-//										} catch (Exception e) {
-//											e.printStackTrace();
-//										}
-										//BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
-										//item.getImage().setWidth(bimg.getWidth());
-										//item.getImage().setHeight(bimg.getHeight());
-										URL imageURL = new URL(item.getImage().getLink());
-										System.out.println("imageurl = " + imageURL);
-										BufferedImage img = ImageIO.read(imageURL);
-										item.getImage().setWidth(img.getWidth());
-										item.getImage().setHeight(img.getHeight());
-										InsertMessageWithImage(source_name, channel,item);
+								if (item.isHas_image()) {
+									// try {
+									// parser.saveImgToFile(item.getImage().getFullFIleName(),
+									// item.getImage().getLink());
+									// } catch (Exception e) {
+									// e.printStackTrace();
+									// }
+									// BufferedImage bimg = ImageIO.read(new
+									// File(item.getImage().getFullFIleName()));
+									// item.getImage().setWidth(bimg.getWidth());
+									// item.getImage().setHeight(bimg.getHeight());
+									URL imageURL = new URL(item.getImage().getLink());
+									System.out.println("imageurl = " + imageURL);
+									BufferedImage img = ImageIO.read(imageURL);
+									item.getImage().setWidth(img.getWidth());
+									item.getImage().setHeight(img.getHeight());
+									InsertMessageWithImage(source_name, channel, item);
 
-									}else{
-										InsertMessageNoImage(source_name,channel,item);
-									}
-									// insert Item
-									//insertItemDB(source_name, channel, contentsFileURL, item);
+								} else {
+									InsertMessageNoImage(source_name, channel, item);
+								}
+								// insert Item
+								// insertItemDB(source_name, channel,
+								// contentsFileURL, item);
 
 							}
 
@@ -120,7 +117,8 @@ public class ParseFeed {
 							// feed.getItems());
 
 						} else { // not the first time
-									// get last update time for each source/channel
+									// get last update time for each
+									// source/channel
 							String last_update_from_table = getLastUpdateDate(source_name, channel);
 							System.out.println("Data_Base_date  =" + last_update_from_table);
 							if (last_update_from_table == null) {
@@ -150,31 +148,33 @@ public class ParseFeed {
 								// if message has image, write to image DB
 								for (FeedItem item : feed.getItems()) {
 
-									//String contentsFileURL = writeToHTML(item);
+									// String contentsFileURL =
+									// writeToHTML(item);
 
+									if (item.isHas_image()) {
+										// parser.saveImgToFile(item.getImage().getFullFIleName(),
+										// item.getImage().getLink());
+										// BufferedImage bimg = ImageIO.read(new
+										// File(item.getImage().getFullFIleName()));
+										// item.getImage().setWidth(bimg.getWidth());
+										// item.getImage().setHeight(bimg.getHeight());
+										URL imageURL = new URL(item.getImage().getLink());
+										System.out.println("imageurl = " + imageURL);
+										BufferedImage img = ImageIO.read(imageURL);
+										item.getImage().setWidth(img.getWidth());
+										item.getImage().setHeight(img.getHeight());
 
-										if (item.isHas_image()) {
-											//parser.saveImgToFile(item.getImage().getFullFIleName(),
-											//		item.getImage().getLink());
-											//BufferedImage bimg = ImageIO.read(new File(item.getImage().getFullFIleName()));
-											//item.getImage().setWidth(bimg.getWidth());
-											//item.getImage().setHeight(bimg.getHeight());
-											URL imageURL = new URL(item.getImage().getLink());
-											System.out.println("imageurl = " + imageURL);
-											BufferedImage img = ImageIO.read(imageURL);
-											item.getImage().setWidth(img.getWidth());
-											item.getImage().setHeight(img.getHeight());
-											
-											InsertMessageWithImage(source_name, channel,item);
-										}else{
-											InsertMessageNoImage(source_name,channel,item);
-										}
-										// insert Item
-										//insertItemDB(source_name, channel, contentsFileURL, item);
+										InsertMessageWithImage(source_name, channel, item);
+									} else {
+										InsertMessageNoImage(source_name, channel, item);
+									}
+									// insert Item
+									// insertItemDB(source_name, channel,
+									// contentsFileURL, item);
 								}
 							} else {
-								System.out.println("feed message is up to date, no DB update required for " + source_name
-										+ " and " + channel);
+								System.out.println("feed message is up to date, no DB update required for "
+										+ source_name + " and " + channel);
 							}
 						}
 					} catch (ClassNotFoundException e) {
@@ -202,76 +202,74 @@ public class ParseFeed {
 				}
 			}
 		}
-		
-
 
 	}
-	
-	private static String PostToServer(URL url, Map<String,Object> params) throws IOException{
+
+	private static String PostToServer(URL url, Map<String, Object> params) throws IOException {
 		StringBuilder builder = new StringBuilder();
 
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String,Object> param : params.entrySet()) {
-            if (postData.length() != 0) postData.append('&');
-            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
-        }
-        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+		StringBuilder postData = new StringBuilder();
+		for (Map.Entry<String, Object> param : params.entrySet()) {
+			if (postData.length() != 0)
+				postData.append('&');
+			postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+			postData.append('=');
+			postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+		}
+		byte[] postDataBytes = postData.toString().getBytes("UTF-8");
 
-        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
-        conn.setDoOutput(true);
-        conn.getOutputStream().write(postDataBytes);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+		conn.setDoOutput(true);
+		conn.getOutputStream().write(postDataBytes);
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
-        String line;
-        while ((line= in.readLine()) != null){
-        	builder.append(line);
-        }
-        
-//        for (int c; (c = in.read()) >= 0;){
-//        	builder.append((char)c);
-//        }
-        System.out.println(builder.toString());
-        
-        return builder.toString();
-    
+		String line;
+		while ((line = in.readLine()) != null) {
+			builder.append(line);
+		}
+
+		// for (int c; (c = in.read()) >= 0;){
+		// builder.append((char)c);
+		// }
+		System.out.println(builder.toString());
+
+		return builder.toString();
+
 	}
 
-	private static boolean isInSourceTable(String source_name, String channel) throws IOException{
+	private static boolean isInSourceTable(String source_name, String channel) throws IOException {
 
 		URL url = new URL(Const.IS_IN_SOURCE);
-		
-		Map<String,Object> params = new LinkedHashMap<>();
-        params.put("source_name", source_name);
-        params.put("channel", channel);
-  
-        String results = PostToServer(url,params);
-        
-        if(results.contains("Error")){
-        	return false;
-        }else{
-        	return true;	
-        }
-        
-		
+
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
+
+		String results = PostToServer(url, params);
+
+		if (results.contains("Error")) {
+			return false;
+		} else {
+			return true;
+		}
+
 	}
 
 	private static void insertToSourceTable(String source_name, String channel)
 			throws ClassNotFoundException, SQLException, IOException {
-		
+
 		URL url = new URL(Const.INSERT_TO_SOURCE);
-		
-		Map<String,Object> params = new LinkedHashMap<>();
-        params.put("source_name", source_name);
-        params.put("channel", channel);
-        params.put("created_time", (String)Utils.formatTime(LocalDateTime.now()));
-  
-        String results = PostToServer(url,params);
+
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
+		params.put("created_time", (String) Utils.formatTime(LocalDateTime.now()));
+
+		String results = PostToServer(url, params);
 
 	}
 
@@ -291,8 +289,11 @@ public class ParseFeed {
 
 	private static String readFile(String filePath) {
 		try {
+			URL path = ParseFeed.class.getClassLoader().getResource(filePath);
+
 			@SuppressWarnings("resource")
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			// BufferedReader br = new BufferedReader(new FileReader(filePath));
+			BufferedReader br = new BufferedReader(new InputStreamReader(path.openStream(), StandardCharsets.UTF_8));
 			StringBuilder sb = new StringBuilder();
 
 			String line = br.readLine();
@@ -311,25 +312,24 @@ public class ParseFeed {
 	private static String getLastUpdateDate(String source_name, String channel) throws SQLException, IOException {
 
 		URL url = new URL(Const.GET_LAST_UPDATE_TIME_PHP);
-		
-		Map<String,Object> params = new LinkedHashMap<>();
-        params.put("source_name", source_name);
-        params.put("channel", channel);
-  
-        String results = PostToServer(url,params);
-		
+
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
+
+		String results = PostToServer(url, params);
 
 		return results;
 	}
 
 	private static String getPreviousLastUpdate(String source_name, String channel) throws SQLException, IOException {
 		URL url = new URL(Const.GET_PREVIOUS_LAST_UPDATE);
-		
-		Map<String,Object> params = new LinkedHashMap<>();
-        params.put("source_name", source_name);
-        params.put("channel", channel);
-  
-        String results = PostToServer(url,params);
+
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
+
+		String results = PostToServer(url, params);
 
 		return results;
 
@@ -339,59 +339,57 @@ public class ParseFeed {
 			String previous_last_update) throws SQLException, IOException {
 
 		URL url = new URL(Const.UPDATE_SOURCE);
-		
-		Map<String,Object> params = new LinkedHashMap<>();
-        params.put("source_name", source_name);
-        params.put("channel", channel);
-        params.put("last_update_time", last_update_time);
-        params.put("previous_last_update", previous_last_update);
-  
-        String results = PostToServer(url,params);
-        
+
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
+		params.put("last_update_time", last_update_time);
+		params.put("previous_last_update", previous_last_update);
+
+		String results = PostToServer(url, params);
+
 	}
 
-	
-	private static void InsertMessageNoImage(String source_name, String channel, FeedItem item) throws IOException{
-		
+	private static void InsertMessageNoImage(String source_name, String channel, FeedItem item) throws IOException {
+
 		URL url = new URL(Const.INSERT_TO_MESSAGE_NO_IMAGE);
-		
-		Map<String,Object> params = new LinkedHashMap<>();
-        params.put("source_name", source_name);
-        params.put("channel", channel);
-        params.put("title", item.getTitle());
-        params.put("link", item.getLink());
-        params.put("content", item.getContents());
-        params.put("pub_date", item.getPubDate());
-        params.put("day_created", item.getDayCreated());
-  
-        //System.out.println("contents = " + item.getContents());
-        String results = PostToServer(url,params);
-	}
-	
-	private static void InsertMessageWithImage(String source_name, String channel, FeedItem item) throws IOException{
-		
-		URL url = new URL(Const.INSERT_TO_MESSAGE_WITH_IMAGE);
-		
-		Map<String,Object> params = new LinkedHashMap<>();
-        params.put("source_name", source_name);
-        params.put("channel", channel);
-        params.put("title", item.getTitle());
-        params.put("link", item.getLink());
-        params.put("content",item.getContents());
-        params.put("has_image", 1);
-        params.put("pub_date", item.getPubDate());
-        params.put("day_created", item.getDayCreated());
-        params.put("image_type", item.getImage().getImage_type());
-        params.put("image_url", item.getImage().getLink());
-        params.put("image_width", (int)item.getImage().getWidth());
-        params.put("image_height",(int)item.getImage().getHeight());
-  
-        //System.out.println("image_width" + item.getImage().getWidth());
-        //System.out.println("image_height" + item.getImage().getHeight());
-        
-        String results = PostToServer(url,params);
-		
+
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
+		params.put("title", item.getTitle());
+		params.put("link", item.getLink());
+		params.put("content", item.getContents());
+		params.put("pub_date", item.getPubDate());
+		params.put("day_created", item.getDayCreated());
+
+		// System.out.println("contents = " + item.getContents());
+		String results = PostToServer(url, params);
 	}
 
+	private static void InsertMessageWithImage(String source_name, String channel, FeedItem item) throws IOException {
+
+		URL url = new URL(Const.INSERT_TO_MESSAGE_WITH_IMAGE);
+
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
+		params.put("title", item.getTitle());
+		params.put("link", item.getLink());
+		params.put("content", item.getContents());
+		params.put("has_image", 1);
+		params.put("pub_date", item.getPubDate());
+		params.put("day_created", item.getDayCreated());
+		params.put("image_type", item.getImage().getImage_type());
+		params.put("image_url", item.getImage().getLink());
+		params.put("image_width", (int) item.getImage().getWidth());
+		params.put("image_height", (int) item.getImage().getHeight());
+
+		// System.out.println("image_width" + item.getImage().getWidth());
+		// System.out.println("image_height" + item.getImage().getHeight());
+
+		String results = PostToServer(url, params);
+
+	}
 
 }
