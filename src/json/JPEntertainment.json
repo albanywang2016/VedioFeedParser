@@ -121,12 +121,6 @@
 	},
 
 	{
-		"companyName":"スポーツ報知",
-		"channel":"Entertainment",
-		"link":"https://headlines.yahoo.co.jp/rss/sph-c_ent.xml"
-	},
-
-	{
 		"companyName":"朝鮮日報日本語版",
 		"channel":"Entertainment",
 		"link":"https://headlines.yahoo.co.jp/rss/chosun-c_ent.xml"
@@ -286,12 +280,6 @@
 		"companyName":"サンケイスポーツ",
 		"channel":"Entertainment",
 		"link":"https://headlines.yahoo.co.jp/rss/sanspo-c_ent.xml"
-	},
-
-	{
-		"companyName":"スポニチアネックス",
-		"channel":"Entertainment",
-		"link":"https://headlines.yahoo.co.jp/rss/spnannex-c_ent.xml"
 	},
 
 	{
