@@ -115,12 +115,6 @@
 	},
 	
 	{
-		"companyName":"スポーツ報知",
-		"channel":"Sport",
-		"link":"https://headlines.yahoo.co.jp/rss/sph-c_spo.xml"
-	},
-	
-	{
 		"companyName":"ちばとぴ！チャンネル",
 		"channel":"Sport",
 		"link":"https://headlines.yahoo.co.jp/rss/chibach-c_spo.xml"
