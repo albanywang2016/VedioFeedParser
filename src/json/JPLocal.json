@@ -163,12 +163,6 @@
 	},
 
 	{
-		"companyName":"北國新聞社",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/hokkoku-loc.xml"
-	},
-
-	{
 		"companyName":"ミニ事件簿",
 		"channel":"Local",
 		"link":"https://headlines.yahoo.co.jp/rss/mjikenbo-loc.xml"
