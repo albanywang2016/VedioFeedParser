@@ -363,7 +363,7 @@ public class ParseFeed {
 		params.put("pub_date", item.getPubDate());
 		params.put("day_created", item.getDayCreated());
 
-		// System.out.println("contents = " + item.getContents());
+		System.out.println("contents = " + item.getContents());
 		String results = PostToServer(url, params);
 	}
 
@@ -385,6 +385,7 @@ public class ParseFeed {
 		params.put("image_width", (int) item.getImage().getWidth());
 		params.put("image_height", (int) item.getImage().getHeight());
 
+		System.out.println("contents = " + item.getContents());
 		// System.out.println("image_width" + item.getImage().getWidth());
 		// System.out.println("image_height" + item.getImage().getHeight());
 

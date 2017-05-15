@@ -77,7 +77,7 @@ public class RSSFeedParserYahoo {
 						switch (localPart) {
 						case Const.LAST_BUILD_DATE:
 							lastBuildDate = getData(event, eventReader);
-							lastBuildDate = lastBuildDate.substring(0,lastBuildDate.indexOf("+") - 1);
+							lastBuildDate = lastBuildDate.substring(0, lastBuildDate.indexOf("+") - 1);
 							return lastBuildDate;
 						}
 					}
@@ -163,7 +163,7 @@ public class RSSFeedParserYahoo {
 							break;
 						case Const.PUB_DATE:
 							pubDate = getData(event, eventReader);
-							pubDate = pubDate.substring(0, pubDate.indexOf("+")-1);
+							pubDate = pubDate.substring(0, pubDate.indexOf("+") - 1);
 							if (!pubDateFound) {
 								feed.setPreviousLastUpdate(pubDate);
 							}
@@ -202,21 +202,24 @@ public class RSSFeedParserYahoo {
 								// Do nothing
 							} else {
 								String dayCreated = Utils.formatTime(LocalDateTime.now());
-								//String timestamp = String.valueOf(System.currentTimeMillis());
+								// String timestamp =
+								// String.valueOf(System.currentTimeMillis());
 
-								//String fileDir = Const.XAMPP_FOLDER + dayCreated;
-								//File dir = new File(fileDir);
-								//dir.mkdir();
+								// String fileDir = Const.XAMPP_FOLDER +
+								// dayCreated;
+								// File dir = new File(fileDir);
+								// dir.mkdir();
 
 								item.setTitle(title);
 								item.setPubDate(pubDate);
-								//item.setTimestamp(timestamp);
+								// item.setTimestamp(timestamp);
 								item.setDayCreated(dayCreated);
 
 								String finalURL = getFinalURL(link);
 								item.setLink(finalURL);
-								//item.setContents(RetrieveContents(finalURL));
-								//Image image = RetrieveImage(finalURL, dayCreated, timestamp, fileDir);
+								// item.setContents(RetrieveContents(finalURL));
+								// Image image = RetrieveImage(finalURL,
+								// dayCreated, timestamp, fileDir);
 								Image image = GetImageInfo(finalURL);
 								if (image != null) {
 									item.setImage(image);
@@ -272,7 +275,9 @@ public class RSSFeedParserYahoo {
 		}
 
 		doc = Jsoup.parse(sb.toString());
-		results = doc.getElementsByClass(Const.ARTICLE).toString();
+		results = doc.getElementsByClass(Const.ARTICAL_MAIN).toString();
+		// String htmlResults = "<html> \n" + "<body> \n" + results + "</body>
+		// \n" + "</html> \n";
 
 		return results;
 	}
@@ -290,11 +295,11 @@ public class RSSFeedParserYahoo {
 		}
 		return url;
 	}
-	
-	private Image GetImageInfo(String link) throws IOException{
+
+	private Image GetImageInfo(String link) throws IOException {
 		Image image = null;
 		URL url = new URL(link);
-		
+
 		InputStream is = url.openStream();
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		StringBuilder sb = new StringBuilder();
@@ -302,7 +307,7 @@ public class RSSFeedParserYahoo {
 		while ((line = br.readLine()) != null) {
 			sb.append(line);
 		}
-		
+
 		Document doc = Jsoup.parse(sb.toString());
 
 		Elements bodies = doc.getElementsByClass(Const.THUMB);
@@ -321,7 +326,7 @@ public class RSSFeedParserYahoo {
 		}
 		br.close();
 		is.close();
-		
+
 		return image;
 	}
 

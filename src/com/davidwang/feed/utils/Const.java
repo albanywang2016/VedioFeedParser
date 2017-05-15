@@ -26,6 +26,7 @@ public class Const {
 	public static final String ITEM = "item";
 
 	public static final String ARTICLE = "article";
+	public static final String ARTICAL_MAIN = "articleMain";
 	public static final String THUMB = "thumb";
 	public static final String IMG = "img";
 	public static final String SRC = "src";
