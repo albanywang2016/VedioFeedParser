@@ -211,6 +211,7 @@ public class RSSFeedParserYahoo {
 								// dir.mkdir();
 
 								item.setTitle(title);
+								pubDate = pubDate.substring(0, pubDate.indexOf(":"));
 								item.setPubDate(pubDate);
 								// item.setTimestamp(timestamp);
 								item.setDayCreated(dayCreated);
