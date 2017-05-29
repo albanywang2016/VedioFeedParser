@@ -78,11 +78,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/storyfulv-c_ent.xml"
 	},
 
-	{
-		"companyName":"映画.com",
-		"channel":"Entertainment",
-		"link":"https://headlines.yahoo.co.jp/rss/eiga-c_ent.xml"
-	},
 
 	{
 		"companyName":"エキサイトミュージック",
@@ -101,23 +96,11 @@
 		"channel":"Entertainment",
 		"link":"https://headlines.yahoo.co.jp/rss/kana-c_ent.xml"
 	},
-
-	{
-		"companyName":"クランクイン！",
-		"channel":"Entertainment",
-		"link":"https://headlines.yahoo.co.jp/rss/crankinn-c_ent.xml"
-	},
-
+	
 	{
 		"companyName":"産経新聞",
 		"channel":"Entertainment",
 		"link":"https://headlines.yahoo.co.jp/rss/san-c_ent.xml"
-	},
-
-	{
-		"companyName":"シネマトゥデイ",
-		"channel":"Entertainment",
-		"link":"https://headlines.yahoo.co.jp/rss/flix-c_ent.xml"
 	},
 
 	{
