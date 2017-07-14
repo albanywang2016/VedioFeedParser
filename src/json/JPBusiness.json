@@ -173,12 +173,6 @@
 		"channel":"Business",
 		"link":"https://headlines.yahoo.co.jp/rss/bfj-bus.xml"
 	},
-	
-	{
-		"companyName":"CBCテレビ",
-		"channel":"Business",
-		"link":"https://headlines.yahoo.co.jp/rss/cbc-bus.xml"
-	},
 
 	{
 		"companyName":"Impress Watch",
@@ -228,11 +222,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/wsj-bus.xml"
 	},
 		
-	{
-		"companyName":"関西テレビ",
-		"channel":"Business",
-		"link":"https://headlines.yahoo.co.jp/rss/kantele-bus.xml"
-	},
 		
 	{
 		"companyName":"経営者online",
@@ -264,11 +253,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/tekkou-bus.xml"
 	},
 		
-	{
-		"companyName":"東海テレビ",
-		"channel":"Business",
-		"link":"https://headlines.yahoo.co.jp/rss/tokai-bus.xml"
-	},
 		
 	{
 		"companyName":"投信1",

@@ -1,10 +1,5 @@
 {"RSSFeed":[
 
-	{
-		"companyName":"CBCテレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/cbc-loc.xml"
-	},
 
 	{
 		"companyName":"IBC岩手放送",
@@ -30,11 +25,7 @@
 		"link":"https://headlines.yahoo.co.jp/rss/wordleaf-loc.xml"
 	},
 
-	{
-		"companyName":"tvkニュース（テレビ神奈川）",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tvk-loc.xml"
-	},
+
 
 	{
 		"companyName":"withnews",
@@ -60,11 +51,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/okinawat-loc.xml"
 	},
 
-	{
-		"companyName":"関西テレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/kantele-loc.xml"
-	},
 
 	{
 		"companyName":"岐阜新聞Ｗｅｂ",
@@ -84,11 +70,7 @@
 		"link":"https://headlines.yahoo.co.jp/rss/sanyo-loc.xml"
 	},
 
-	{
-		"companyName":"チバテレ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/chibatele-loc.xml"
-	},
+
 
 	{
 		"companyName":"千葉日報オンライン",
@@ -96,11 +78,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/chibatopi-loc.xml"
 	},
 
-	{
-		"companyName":"テレ玉",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/teletama-loc.xml"
-	},
 
 	{
 		"companyName":"デーリー東北新聞社",
@@ -180,11 +157,7 @@
 		"link":"https://headlines.yahoo.co.jp/rss/rtn-loc.xml"
 	},
 
-	{
-		"companyName":"CNA秋田ケーブルテレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/cnaakita-loc.xml"
-	},
+
 
 	{
 		"companyName":"Lmaga.jp",
@@ -271,39 +244,9 @@
 	},
 
 	{
-		"companyName":"チューリップテレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tuliptv-loc.xml"
-	},
-
-	{
-		"companyName":"テレビ高知",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/kutv-loc.xml"
-	},
-
-	{
-		"companyName":"東海テレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tokai-loc.xml"
-	},
-
-	{
-		"companyName":"とちぎテレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tochitele-loc.xml"
-	},
-
-	{
 		"companyName":"長崎新聞",
 		"channel":"Local",
 		"link":"https://headlines.yahoo.co.jp/rss/nagasaki-loc.xml"
-	},
-
-	{
-		"companyName":"奈良テレビ放送",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tvn-loc.xml"
 	},
 
 	{

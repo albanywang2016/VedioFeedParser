@@ -50,7 +50,7 @@ public class Const {
 	public static final String JPSCIENCE_JSON = "json/JPScience.json";
 	public static final String JPLIFE_JSON = "json/JPLife.json";
 	public static final String JPLOCAL_JSON = "json/JPLocal.json";
-	public static final String JPMAGAZINE_JSON = "json/JPMagazine.json";
+	public static final String JPMAGAZINE_JSON = "json/JPMagaine.json";
 
 	public static final String RSSFEED = "RSSFeed";
 	public static final String COMPANY_NAME = "companyName";

@@ -6,11 +6,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/abema-c_spo.xml"
 	},
 	
-	{
-		"companyName":"CBCテレビ",
-		"channel":"Sport",
-		"link":"https://headlines.yahoo.co.jp/rss/cbc-c_spo.xml"
-	},
 	
 	{
 		"companyName":"GOAL",
@@ -246,11 +241,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/autoconen-c_spo.xml"
 	},
 	
-	{
-		"companyName":"関西テレビ",
-		"channel":"Sport",
-		"link":"https://headlines.yahoo.co.jp/rss/kantele-c_spo.xml"
-	},
 	
 	{
 		"companyName":"ゲキサカ",
@@ -300,11 +290,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/chibatopi-c_spo.xml"
 	},
 	
-	{
-		"companyName":"テレビ東京スポーツ",
-		"channel":"Sport",
-		"link":"https://headlines.yahoo.co.jp/rss/tvtokyos-c_spo.xml"
-	},
 	
 	{
 		"companyName":"東スポWeb",

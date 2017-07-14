@@ -56,12 +56,6 @@
 	},
 
 	{
-		"companyName":"テレ玉",
-		"channel":"Domestic",
-		"link":"https://headlines.yahoo.co.jp/rss/teletama-dom.xml"
-	},
-
-	{
 		"companyName":"日刊スポーツ",
 		"channel":"Domestic",
 		"link":"https://headlines.yahoo.co.jp/rss/nksports-dom.xml"
@@ -111,13 +105,6 @@
 		"companyName":"Aviation Wire",
 		"channel":"Domestic",
 		"link":"https://headlines.yahoo.co.jp/rss/awire-dom.xml"
-	},
-
-	
-	{
-		"companyName":"CBCテレビ",
-		"channel":"Domestic",
-		"link":"https://headlines.yahoo.co.jp/rss/cbc-dom.xml"
 	},
 
 	
