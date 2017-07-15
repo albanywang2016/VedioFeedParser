@@ -343,8 +343,53 @@
 		"companyName":"聯合ニュース",
 		"channel":"Sport",
 		"link":"https://headlines.yahoo.co.jp/rss/yonh-c_spo.xml"
-	}
+	},
 	
-
+	{
+		"companyName":"ベースボールチャンネル",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/baseballc-all.xml"
+	},
+	
+		{
+		"companyName":"footballista",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/fballista-all.xml"
+	},
 		
+	{
+		"companyName":"フットボールチャンネル",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/footballc-all.xml"
+	},
+
+	{
+		"companyName":"webスポルティーバ",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/sportiva-all.xml"
+	},	
+
+	{
+		"companyName":"Football ZONE web",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/soccermzw-all.xml"
+	},			
+	
+	{
+		"companyName":"SOCCER DIGEST Web",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/sdigestw-all.xml"
+	},
+	
+	{
+		"companyName":"THE ANSWER",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/theanswer-all.xml"
+	},
+	
+	{
+		"companyName":"CYCLE SPORTS.jp",
+		"channel":"Sport",
+		"link":"https://headlines.yahoo.co.jp/rss/cyclespo-all.xml"
+	}
 ]}

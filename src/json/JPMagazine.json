@@ -1,6 +1,12 @@
 {"RSSFeed":[
 
 	{
+		"companyName":"VOGUE JAPAN",
+		"channel":"Magazine",
+		"link":"https://headlines.yahoo.co.jp/rss/vogue-all.xml"
+	},
+	
+	{
 		"companyName":"＠ＤＩＭＥ",
 		"channel":"Magazine",
 		"link":"https://headlines.yahoo.co.jp/rss/dime-all.xml"
@@ -12,11 +18,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/will-all.xml"
 	},
 
-	{
-		"companyName":"webスポルティーバ",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/sportiva-all.xml"
-	},
 
 	{
 		"companyName":"エスクァイア",
@@ -96,18 +97,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/oriconbiz-all.xml"
 	},
 
-	{
-		"companyName":"CYCLE SPORTS.jp",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/cyclespo-all.xml"
-	},
-
-	{
-		"companyName":"SOCCER DIGEST Web",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/sdigestw-all.xml"
-	},
-
 
 	{
 		"companyName":"週刊金曜日",
@@ -131,12 +120,6 @@
 		"companyName":"CGWORLD.jp",
 		"channel":"Magazine",
 		"link":"https://headlines.yahoo.co.jp/rss/cgworld-all.xml"
-	},
-
-	{
-		"companyName":"THE ANSWER",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/theanswer-all.xml"
 	},
 
 	{
@@ -271,11 +254,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/forbes-all.xml"
 	},
 
-	{
-		"companyName":"Football ZONE web",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/soccermzw-all.xml"
-	},
 
 	{
 		"companyName":"FRIDAY",
@@ -295,11 +273,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/president-all.xml"
 	},
 
-	{
-		"companyName":"ベースボールチャンネル",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/baseballc-all.xml"
-	},
 
 	{
 		"companyName":"madame FIGARO.jp",
@@ -619,17 +592,6 @@
 		"link":"https://headlines.yahoo.co.jp/rss/fffbiki-all.xml"
 	},
 
-	{
-		"companyName":"footballista",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/fballista-all.xml"
-	},
-
-	{
-		"companyName":"フットボールチャンネル",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/footballc-all.xml"
-	},
 
 	{
 		"companyName":"BOOKSTAND",
@@ -695,13 +657,8 @@
 		"companyName":"25ansウエディング",
 		"channel":"Magazine",
 		"link":"https://headlines.yahoo.co.jp/rss/vingtcinqw-all.xml"
-	},
-
-	{
-		"companyName":"VOGUE JAPAN",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/vogue-all.xml"
 	}
+
 
 		
 ]}
