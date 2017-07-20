@@ -1,82 +1,10 @@
 {"RSSFeed":[
 
 	{
-		"companyName":"CBCテレビ",
-		"channel":"Business",
-		"link":"https://headlines.yahoo.co.jp/rss/cbc-bus.xml"
-	},
+		"companyName":"ニコニコ動画",
+		"channel":"Vedio",
+		"link":"http://www.nicovideo.jp/ranking/fav/daily/all"
 	
-
-	{
-		"companyName":"テレ玉",
-		"channel":"Domestic",
-		"link":"https://headlines.yahoo.co.jp/rss/teletama-dom.xml"
-	},
-	
-	{
-		"companyName":"関西テレビ",
-		"channel":"Business",
-		"link":"https://headlines.yahoo.co.jp/rss/kantele-bus.xml"
-	},
-
-	{
-		"companyName":"東海テレビ",
-		"channel":"Business",
-		"link":"https://headlines.yahoo.co.jp/rss/tokai-bus.xml"
-	},
-	
-	{
-		"companyName":"tvkニュース（テレビ神奈川）",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tvk-loc.xml"
-	},
-	
-	{
-		"companyName":"チバテレ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/chibatele-loc.xml"
-	},
-	
-	{
-		"companyName":"CNA秋田ケーブルテレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/cnaakita-loc.xml"
-	},
-	
-	{
-		"companyName":"チューリップテレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tuliptv-loc.xml"
-	},
-
-	{
-		"companyName":"テレビ高知",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/kutv-loc.xml"
-	},
-	
-	{
-		"companyName":"とちぎテレビ",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tochitele-loc.xml"
-	},
-	
-	{
-		"companyName":"奈良テレビ放送",
-		"channel":"Local",
-		"link":"https://headlines.yahoo.co.jp/rss/tvn-loc.xml"
-	},
-	
-	{
-		"companyName":"ザテレビジョン",
-		"channel":"Magazine",
-		"link":"https://headlines.yahoo.co.jp/rss/the_tv-all.xml"
-	},
-	
-	{
-		"companyName":"テレビ東京スポーツ",
-		"channel":"Sport",
-		"link":"https://headlines.yahoo.co.jp/rss/tvtokyos-c_spo.xml"
-	},
+	}
 	
 ]}

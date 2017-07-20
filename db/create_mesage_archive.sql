@@ -1,1 +1,0 @@
-create table message_archive as select * from message

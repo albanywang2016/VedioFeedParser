@@ -13,6 +13,7 @@ public class Const {
 	public static final String CHANNEL = "channel";
 	public static final String TITLE = "title";
 	public static final String LINK = "link";
+	public static final String DATE = "date";
 	public static final String DESCRIPTION = "description";
 	public static final String LANGUAGE = "language";
 	public static final String COPYRIGHT = "copyright";
@@ -40,17 +41,10 @@ public class Const {
 	public static final String RIGHT_BRACKET = ")";
 	public static final String UTF8 = "UTF-8";
 
-	public static final String FILE_PATH = "json/JPDomestic.json";
-	public static final String JPTOPIC_JSON = "json/JPTopic.json";
-	public static final String JPDOMESTIC_JSON = "json/JPDomestic.json";
-	public static final String JPINTERNATIONAL_JSON = "json/JPInternational.json";
-	public static final String JPBUSINESS_JSON = "json/JPBusiness.json";
-	public static final String JPENTERTAINMENT_JSON = "json/JPEntertainment.json";
-	public static final String JPSPORT_JSON = "json/JPSport.json";
-	public static final String JPSCIENCE_JSON = "json/JPScience.json";
-	public static final String JPLIFE_JSON = "json/JPLife.json";
-	public static final String JPLOCAL_JSON = "json/JPLocal.json";
-	public static final String JPMAGAZINE_JSON = "json/JPMagazine.json";
+
+	public static final String JPVEDIO = "json/JPVedio.json";
+	public static final String NICOVIDEO = "http://www.nicovideo.jp";
+
 
 	public static final String RSSFEED = "RSSFeed";
 	public static final String COMPANY_NAME = "companyName";

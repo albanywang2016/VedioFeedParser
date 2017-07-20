@@ -45,7 +45,7 @@ import com.davidwang.feed.model.Image;
 import com.davidwang.feed.utils.Const;
 import com.davidwang.feed.utils.Utils;
 
-public class RSSFeedParserYahoo {
+public class RSSFeedParser {
 
 	private boolean pubDateFound = false;
 
@@ -73,9 +73,9 @@ public class RSSFeedParserYahoo {
 					String prefix = event.asStartElement().getName().getPrefix();
 					String localPart = event.asStartElement().getName().getLocalPart();
 
-					if (prefix.isEmpty()) {
+					if (prefix.equalsIgnoreCase("dc")) {
 						switch (localPart) {
-						case Const.LAST_BUILD_DATE:
+						case Const.DATE:
 							lastBuildDate = getData(event, eventReader);
 							lastBuildDate = lastBuildDate.substring(0, lastBuildDate.indexOf("+") - 1);
 							return lastBuildDate;
@@ -117,7 +117,8 @@ public class RSSFeedParserYahoo {
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 		inputFactory.setProperty(Const.IS_COALESCING, true);
 		try {
-
+			feed = new Feed();
+			items = new ArrayList<FeedItem>();
 			XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
 			while (eventReader.hasNext()) {
 				XMLEvent event = eventReader.nextEvent();
@@ -132,18 +133,10 @@ public class RSSFeedParserYahoo {
 						// when prefix is empty
 						switch (localPart) {
 						case Const.CHANNEL:
-							feed = new Feed();
-							items = new ArrayList<FeedItem>();
 							event = eventReader.nextEvent();
 							break;
 						case Const.TITLE:
 							title = getData(event, eventReader);
-							if (title.contains(source_name)) {
-								if (title.indexOf(source_name) > 0) {
-									title = title.substring(0, title.indexOf(source_name) - 1);
-								}
-
-							}
 							break;
 						case Const.LINK:
 							link = getData(event, eventReader);
@@ -151,30 +144,9 @@ public class RSSFeedParserYahoo {
 						case Const.DESCRIPTION:
 							description = getData(event, eventReader);
 							break;
-						case Const.LANGUAGE:
-							language = getData(event, eventReader);
-							break;
-						case Const.COPYRIGHT:
-							copyright = getData(event, eventReader);
-							break;
 						case Const.LAST_BUILD_DATE:
 							lastBuildDate = getData(event, eventReader);
 							lastBuildDate = lastBuildDate.substring(0, lastBuildDate.indexOf("+") - 1);
-							break;
-						case Const.PUB_DATE:
-							pubDate = getData(event, eventReader);
-							pubDate = pubDate.substring(0, pubDate.indexOf("+") - 1);
-							if (!pubDateFound) {
-								feed.setPreviousLastUpdate(pubDate);
-							}
-							pubDateFound = true;
-
-							if (!first_time_retrieve) {
-								if (pubDate.equalsIgnoreCase(previousLastUpdate)) {
-									feed.setItems(items);
-									return feed;
-								}
-							}
 							break;
 						case Const.ITEM:
 							if (isFeedHeader) {
@@ -182,18 +154,38 @@ public class RSSFeedParserYahoo {
 								feed.setTitle(title);
 								feed.setLink(link);
 								feed.setDescription(description);
-								feed.setLanguage(language);
-								feed.setCopyright(copyright);
-								feed.setLastBuildDate(lastBuildDate);
+								feed.setLastBuildDate(pubDate);
 							}
 							event = eventReader.nextEvent();
 							break;
+						}
+					}else{ // prefix is not empty
+						if(prefix.equalsIgnoreCase("dc")){
+							switch (localPart){
+							case Const.DATE:
+								pubDate = getData(event, eventReader);
+								pubDate = pubDate.substring(0, pubDate.indexOf("+") - 1); // remove +09:00 2017-07-16T23:12:14+09:00
+								
+								//record the first element as previous last update for future re-visit. 
+								if (!pubDateFound) {
+									feed.setPreviousLastUpdate(pubDate);
+								}
+								pubDateFound = true;
+
+								//if no new update skip the feed parser 
+								if (!first_time_retrieve) {
+									if (pubDate.equalsIgnoreCase(previousLastUpdate)) {
+										feed.setItems(items);
+										return feed;
+									}
+								}
+								break;
+							}
 						}
 					}
 				} else if (event.isEndElement()) {
 					String prefix = event.asEndElement().getName().getPrefix();
 					String localPart = event.asEndElement().getName().getLocalPart();
-
 					if (prefix.isEmpty()) {
 						if (localPart == (Const.ITEM)) {
 							System.out.println("title = " + title);
@@ -202,18 +194,10 @@ public class RSSFeedParserYahoo {
 								// Do nothing
 							} else {
 								String dayCreated = Utils.formatTime(LocalDateTime.now());
-								// String timestamp =
-								// String.valueOf(System.currentTimeMillis());
-
-								// String fileDir = Const.XAMPP_FOLDER +
-								// dayCreated;
-								// File dir = new File(fileDir);
-								// dir.mkdir();
-
+								title = title.substring(0, title.indexOf("/") - 2);
 								item.setTitle(title);
 								pubDate = pubDate.substring(0, pubDate.indexOf(":"));
 								item.setPubDate(pubDate);
-								// item.setTimestamp(timestamp);
 								item.setDayCreated(dayCreated);
 
 								String finalURL = getFinalURL(link);
@@ -298,7 +282,7 @@ public class RSSFeedParserYahoo {
 	}
 
 	private Image GetImageInfo(String link) throws IOException {
-		Image image = null;
+		Image image = new Image();
 		URL url = new URL(link);
 
 		InputStream is = url.openStream();
@@ -310,21 +294,32 @@ public class RSSFeedParserYahoo {
 		}
 
 		Document doc = Jsoup.parse(sb.toString());
-
-		Elements bodies = doc.getElementsByClass(Const.THUMB);
-		if (bodies != null && bodies.size() != 0) {
-			image = new Image();
-
-			Document doc2 = Jsoup.parse(bodies.toString());
-			Element element = doc2.select(Const.IMG).first();
-
-			String imageURL = element.attr(Const.SRC);
-
-			image.setLink(imageURL);
-			if (imageURL.contains(Const.JPG)) {
-				image.setImage_type(Const.JPG);
-			}
+		Elements elements = doc.select("meta[id=ogImage]");
+		System.out.println(elements.toString());
+		String imageurl = "";
+		//String imageurl = elements.select("content").first().toString();
+		for(Element element : elements){
+			imageurl = element.attr("content");
 		}
+		image.setLink(imageurl);
+		if(imageurl.contains(Const.JPG)){
+			image.setImage_type(Const.JPG);
+		}
+
+//		Elements bodies = doc.getElementsByAttribute("meta");
+//		if (bodies != null && bodies.size() != 0) {
+//			image = new Image();
+//
+//			Document doc2 = Jsoup.parse(bodies.toString());
+//			Element element = doc2.select(Const.IMG).first();
+//
+//			String imageURL = element.attr(Const.SRC);
+//
+//			image.setLink(imageURL);
+//			if (imageURL.contains(Const.JPG)) {
+//				image.setImage_type(Const.JPG);
+//			}
+//		}
 		br.close();
 		is.close();
 

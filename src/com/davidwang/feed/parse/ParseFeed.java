@@ -24,7 +24,8 @@ import javax.imageio.ImageIO;
 import com.davidwang.feed.model.Feed;
 import com.davidwang.feed.model.FeedItem;
 import com.davidwang.feed.model.FeedSource;
-import com.davidwang.feed.read.RSSFeedParserYahoo;
+import com.davidwang.feed.read.RSSFeedParser;
+import com.davidwang.feed.read.VedioFeedParser;
 import com.davidwang.feed.utils.Const;
 import com.davidwang.feed.utils.Utils;
 import com.eclipsesource.json.Json;
@@ -38,9 +39,7 @@ public class ParseFeed {
 
 	public static void main(String[] args) {
 
-		String[] allFeeds = { Const.JPDOMESTIC_JSON, Const.JPINTERNATIONAL_JSON, Const.JPBUSINESS_JSON,
-				Const.JPENTERTAINMENT_JSON, Const.JPSPORT_JSON, Const.JPSCIENCE_JSON, Const.JPLIFE_JSON,
-				Const.JPLOCAL_JSON, Const.JPMAGAZINE_JSON };
+		String[] allFeeds = { Const.JPVEDIO };
 
 		for (String feed_path : allFeeds) {
 
@@ -54,19 +53,15 @@ public class ParseFeed {
 					String source_name = fs.getCompanyName().trim();
 					String channel = fs.getChannel().trim();
 					String link = fs.getLink();
-					RSSFeedParserYahoo parser = new RSSFeedParserYahoo();
+					VedioFeedParser parser = new VedioFeedParser();
 
 					if (source_name.isEmpty() || channel.isEmpty()) {
 						System.out.println("source name and channel should not be empty!");
 						break;
 					}
 
-					// for the first time that source and channel are not in
-					// source
-					// table.
-					// insert to source table and parse the feed, incert to
-					// message
-					// table and image table.
+					// for the first time that source and channel are not in source table.
+					// insert to source table and parse the feed, insert to message table and image table.
 					try {
 						if (!isInSourceTable(source_name, channel)) {
 							insertToSourceTable(source_name, channel);
@@ -232,9 +227,6 @@ public class ParseFeed {
 			builder.append(line);
 		}
 
-		// for (int c; (c = in.read()) >= 0;){
-		// builder.append((char)c);
-		// }
 		System.out.println(builder.toString());
 
 		return builder.toString();
