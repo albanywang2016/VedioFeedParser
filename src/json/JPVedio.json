@@ -115,6 +115,67 @@
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/user/KyodoNews/videos"
 	
-	}
+	},
 	
+	{
+		"companyName":"朝日新聞社",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/asahicom/videos"
+	
+	},
+	
+	{
+		"companyName":"SankeiUp",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/SankeiUp/videos"
+	
+	},
+	
+	{
+		"companyName":"ANNnewsCH",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/ANNnewsCH/videos"
+	
+	},	
+	
+	{
+		"companyName":"HD channel",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/graythug5/videos"
+	
+	},
+	
+	{
+		"companyName":"Kawaii Pet TV",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCZp59Q3hFsT8IJYU_1j9XFQ/videos"
+	
+	},	
+	
+	{
+		"companyName":"Best Awesome",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCHBnS9TR-4h2nvuiiq3XCAA/videos"
+	
+	},
+	{
+		"companyName":"AFPBB News",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/afpbbnews/videos"
+	
+	},	
+
+	{
+		"companyName":"Kohachannel",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/kasuba710326/videos"
+	
+	},
+	
+	{
+		"companyName":"Kチャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCy1_6VO-AQ_bkRwW3mx_bgA/videos"
+	
+	}
 ]}
