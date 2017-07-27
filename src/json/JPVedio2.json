@@ -1,8 +1,23 @@
 {"RSSFeed":[
+
+	{
+		"companyName":"茨城の動画",
+		"channel":"Vedio",
+		"link":"http://ibarakinews.jp/hp/list.php?elem=movie"
+	
+	},
+	
 	{
 		"companyName":"日テレNEWS24",
 		"channel":"Vedio",
 		"link":"http://feed.rssad.jp/rss/news24/index.rdf"
+	},
+	
+	{
+		"companyName":"ニコニコ動画",
+		"channel":"Vedio",
+		"link":"http://www.nicovideo.jp/ranking/fav/daily/all"
+	
 	},
 	
 	{

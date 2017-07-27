@@ -44,6 +44,7 @@ public class Const {
 
 	public static final String JPVEDIO = "json/JPVedio.json";
 	public static final String NICOVIDEO = "http://www.nicovideo.jp";
+	public static final String YOUTUBE = "https://www.youtube.com";
 
 
 	public static final String RSSFEED = "RSSFeed";
@@ -68,4 +69,6 @@ public class Const {
 	public static final String INSERT_TO_SOURCE = "http://japannews.tech/php/insert_to_source.php";
 	public static final String IS_IN_SOURCE = "http://japannews.tech/php/is_in_source.php";
 	public static final String UPDATE_SOURCE = "http://japannews.tech/php/update_source.php";
+	public static final String GET_LAST_ITEM_FROM_MESSAGE = "http://japannews.tech/php/get_last_item_from_message.php";
+	
 }

@@ -1,9 +1,193 @@
 {"RSSFeed":[
 
 	{
-		"companyName":"ニコニコ動画",
+		"companyName":"徳島新聞動画 TPV",
 		"channel":"Vedio",
-		"link":"http://www.nicovideo.jp/ranking/fav/daily/all"
+		"link":"https://www.youtube.com/channel/UC9eeT2NRk0U7eczUemANEwA/videos"
+	
+	},
+	
+	{
+		"companyName":"毎日新聞",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/videomainichi/videos"
+	
+	},
+
+	{
+		"companyName":"琉球新報",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/ryukyushimpo/videos"
+	
+	},	
+	
+	{
+		"companyName":"下野新聞チャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/shimotsukenp/videos"
+	
+	},
+	
+
+	{
+		"companyName":"宮崎日日新聞",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/MiyanichiTV/videos"
+	
+	},
+	
+	{
+		"companyName":"ehimenp",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/ehimenp/videos"
+	
+	},
+	
+			
+	{
+		"companyName":"Nihonkai Shimbun channel",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/NetNihonkai/videos"
+	
+	},
+	
+	{
+		"companyName":"神戸新聞社（kobedigital)",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/kobedigital/videos"
+	
+	},
+	
+	{
+		"companyName":"福井新聞社デジタルラボ",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/digicon2007/videos"
+	
+	},	
+	
+	
+	{
+		"companyName":"The Japan Times",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/thejapantimes/videos"
+	
+	},
+	
+	
+	{
+		"companyName":"SankeiNews",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/SankeiNews/videos"
+	
+	},
+	
+	
+	{
+		"companyName":"KAHOKUSHIMPO",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/KAHOKUSHIMPO/videos"
+	
+	},
+	
+	{
+		"companyName":"ibarakishimbun1",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/ibarakishimbun1/videos"
+	
+	},
+	
+	{
+		"companyName":"ibarakishimbun1",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/ibarakishimbun1/videos"
+	
+	},
+	{
+		"companyName":"沖縄タイムス公式動画チャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/TheOKINAWATIMES/videos"
+	
+	},
+	{
+		"companyName":"PressYamashin",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/PressYamashin/videos"
+	
+	},
+	{
+		"companyName":"akitasakigake",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/akitasakigake/videos"
+	
+	},
+	{
+		"companyName":"akitasakigake",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/akitasakigake/videos"
+	
+	},
+	{
+		"companyName":"佐賀新聞[SagaShimbun]",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/SagaShimbun/videos"
+	
+	},
+	{
+		"companyName":"DoshinWeb",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/DoshinWeb/videos"
+	
+	},
+	{
+		"companyName":"ToonippoPress",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/ToonippoPress/videos"
+	
+	},
+	
+	{
+		"companyName":"KyodoNews",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/KyodoNews/videos"
+	
+	},
+	
+	{
+		"companyName":"徳島県チャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/tokushimakouhou/videos"
+	
+	},
+	
+	{
+		"companyName":"徳島県チャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/tokushimakouhou/videos"
+	
+	},
+	
+	{
+		"companyName":"大塚製薬 公式チャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/otsukaseiyaku/videos"
+	
+	},
+	{
+		"companyName":"大塚製薬 公式チャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/otsukaseiyaku/videos"
+	
+	},
+	{
+		"companyName":"徳島ヴォルティス",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/VortisChannel/videos"
+	
+	},
+	{
+		"companyName":"Jリーグ公式チャンネル",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/jleaguechannel/videos"
 	
 	}
 	

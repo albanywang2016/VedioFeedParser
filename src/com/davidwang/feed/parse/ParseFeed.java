@@ -26,6 +26,7 @@ import com.davidwang.feed.model.FeedItem;
 import com.davidwang.feed.model.FeedSource;
 import com.davidwang.feed.read.RSSFeedParser;
 import com.davidwang.feed.read.VedioFeedParser;
+import com.davidwang.feed.read.YoutubeFeedParser;
 import com.davidwang.feed.utils.Const;
 import com.davidwang.feed.utils.Utils;
 import com.eclipsesource.json.Json;
@@ -53,7 +54,7 @@ public class ParseFeed {
 					String source_name = fs.getCompanyName().trim();
 					String channel = fs.getChannel().trim();
 					String link = fs.getLink();
-					VedioFeedParser parser = new VedioFeedParser();
+					YoutubeFeedParser parser = new YoutubeFeedParser();
 
 					if (source_name.isEmpty() || channel.isEmpty()) {
 						System.out.println("source name and channel should not be empty!");
@@ -65,96 +66,43 @@ public class ParseFeed {
 					try {
 						if (!isInSourceTable(source_name, channel)) {
 							insertToSourceTable(source_name, channel);
-
+							String day_created = Utils.formatTime(LocalDateTime.now());
 							// parse the feed
-							Feed feed = parser.readFeed(source_name, channel, link, "", true);
+							Feed feed = parser.readFeed(source_name, channel, link, "", "");
 							// System.out.println(feed);
 
 							// update feed source table
-							updateFeedSourceDB(source_name, channel, feed.getLastBuildDate(),
-									feed.getPreviousLastUpdate());
+							updateFeedSourceDB(source_name, channel, day_created, day_created);
 
 							// if message has image, write to image DB
-							for (FeedItem item : feed.getItems()) {
-
-								// String contentsFileURL = writeToHTML(item);
-								// item.setLink(contentsFileURL);
-
+							for (int i = feed.getItems().size() - 1; i >= 0; --i) {
+								FeedItem item = feed.getItems().get(i);
 								if (item.isHas_image()) {
-									// try {
-									// parser.saveImgToFile(item.getImage().getFullFIleName(),
-									// item.getImage().getLink());
-									// } catch (Exception e) {
-									// e.printStackTrace();
-									// }
-									// BufferedImage bimg = ImageIO.read(new
-									// File(item.getImage().getFullFIleName()));
-									// item.getImage().setWidth(bimg.getWidth());
-									// item.getImage().setHeight(bimg.getHeight());
 									URL imageURL = new URL(item.getImage().getLink());
-									System.out.println("imageurl = " + imageURL);
+									//System.out.println("imageurl = " + imageURL);
 									BufferedImage img = ImageIO.read(imageURL);
 									item.getImage().setWidth(img.getWidth());
 									item.getImage().setHeight(img.getHeight());
+									item.setDayCreated(Utils.formatTime(LocalDateTime.now()));
 									InsertMessageWithImage(source_name, channel, item);
 
 								} else {
 									InsertMessageNoImage(source_name, channel, item);
 								}
-								// insert Item
-								// insertItemDB(source_name, channel,
-								// contentsFileURL, item);
-
 							}
 
-							// write to Jason file
-							// writeTOJasonFile(source_name, channel,
-							// feed.getItems());
+						} else { // not the first time get last item from message for each source/channel
+							String last_item = GetlastItemFromMessageTable(source_name, channel);
+							String day_created = Utils.formatTime(LocalDateTime.now());
+							
+							Feed feed = parser.readFeed(source_name, channel, link, "", last_item);
 
-						} else { // not the first time
-									// get last update time for each
-									// source/channel
-							String last_update_from_table = getLastUpdateDate(source_name, channel);
-							System.out.println("Data_Base_date  =" + last_update_from_table);
-							if (last_update_from_table == null) {
-								last_update_from_table = "";
-							}
-
-							String lastBuildDate = parser.getLastUpdateTime(link);
-							System.out.println("last_build_date =" + lastBuildDate);
-							if (lastBuildDate == null) {
-								lastBuildDate = "";
-							}
-
-							System.out.println("source = " + source_name + ", channel = " + channel);
-
-							String previoud_last_update = getPreviousLastUpdate(source_name, channel);
-
-							// there is new update in the feed
-							if (!last_update_from_table.equalsIgnoreCase(lastBuildDate)) {
-
-								// List<String > titleList =
-								// getAllCurrentTitles(source_name,channel);
-
-								Feed feed = parser.readFeed(source_name, channel, link, previoud_last_update, false);
-
-								updateFeedSourceDB(source_name, channel, lastBuildDate, feed.getPreviousLastUpdate());
+								updateFeedSourceDB(source_name, channel, day_created, day_created);
 
 								// if message has image, write to image DB
 								for (FeedItem item : feed.getItems()) {
-
-									// String contentsFileURL =
-									// writeToHTML(item);
-
 									if (item.isHas_image()) {
-										// parser.saveImgToFile(item.getImage().getFullFIleName(),
-										// item.getImage().getLink());
-										// BufferedImage bimg = ImageIO.read(new
-										// File(item.getImage().getFullFIleName()));
-										// item.getImage().setWidth(bimg.getWidth());
-										// item.getImage().setHeight(bimg.getHeight());
 										URL imageURL = new URL(item.getImage().getLink());
-										System.out.println("imageurl = " + imageURL);
 										BufferedImage img = ImageIO.read(imageURL);
 										item.getImage().setWidth(img.getWidth());
 										item.getImage().setHeight(img.getHeight());
@@ -163,15 +111,8 @@ public class ParseFeed {
 									} else {
 										InsertMessageNoImage(source_name, channel, item);
 									}
-									// insert Item
-									// insertItemDB(source_name, channel,
-									// contentsFileURL, item);
 								}
-							} else {
-								System.out.println("feed message is up to date, no DB update required for "
-										+ source_name + " and " + channel);
 							}
-						}
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -367,6 +308,9 @@ public class ParseFeed {
 		params.put("source_name", source_name);
 		params.put("channel", channel);
 		params.put("title", item.getTitle());
+		//System.out.println("title = " + item.getTitle());
+		//System.out.println("link = " + item.getLink());
+		//System.out.println("image URL = " + item.getImage().getLink());
 		params.put("link", item.getLink());
 		params.put("content", item.getContents());
 		params.put("has_image", 1);
@@ -377,12 +321,24 @@ public class ParseFeed {
 		params.put("image_width", (int) item.getImage().getWidth());
 		params.put("image_height", (int) item.getImage().getHeight());
 
-		System.out.println("contents = " + item.getContents());
-		// System.out.println("image_width" + item.getImage().getWidth());
-		// System.out.println("image_height" + item.getImage().getHeight());
+		System.out.println("item = " + item.toString());
+
+		String results = PostToServer(url, params);
+		//System.out.println(results);
+
+	}
+	
+	private static String GetlastItemFromMessageTable(String source_name, String channel) throws IOException{
+		URL url = new URL(Const.GET_LAST_ITEM_FROM_MESSAGE);
+		
+		Map<String, Object> params = new LinkedHashMap<>();
+		params.put("source_name", source_name);
+		params.put("channel", channel);
 
 		String results = PostToServer(url, params);
 
+		return results;
+		
 	}
 
 }
