@@ -95,7 +95,7 @@ public class YoutubeFeedParser {
 				
 				lastBuildDate = element.select("ul[class=yt-lockup-meta-info]").text();
 				lastBuildDate = lastBuildDate.substring(lastBuildDate.indexOf("views") + 5, lastBuildDate.length());
-				if(lastBuildDate.contains("week") || lastBuildDate.contains("month") || lastBuildDate.contains("year")) break;
+				if(lastBuildDate.contains("month") || lastBuildDate.contains("year")) break;
 				item.setPubDate(lastBuildDate);
 				
 				item.setHas_image(true);
