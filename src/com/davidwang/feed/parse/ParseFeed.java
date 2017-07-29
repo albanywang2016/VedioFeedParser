@@ -24,8 +24,6 @@ import javax.imageio.ImageIO;
 import com.davidwang.feed.model.Feed;
 import com.davidwang.feed.model.FeedItem;
 import com.davidwang.feed.model.FeedSource;
-import com.davidwang.feed.read.RSSFeedParser;
-import com.davidwang.feed.read.VedioFeedParser;
 import com.davidwang.feed.read.YoutubeFeedParser;
 import com.davidwang.feed.utils.Const;
 import com.davidwang.feed.utils.Utils;
