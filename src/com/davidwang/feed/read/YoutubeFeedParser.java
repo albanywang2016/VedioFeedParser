@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class YoutubeFeedParser {
 			url = new URL(linkURL);
 			in = url.openStream();
 			
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			BufferedReader br = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
 			StringBuilder sb = new StringBuilder();
 			String line = "";
 			while ((line = br.readLine()) != null) {
@@ -72,7 +73,10 @@ public class YoutubeFeedParser {
 				lastBuildDate = element.select("ul[class=yt-lockup-meta-info]").text();
 				lastBuildDate = lastBuildDate.substring(lastBuildDate.indexOf("views") + 5, lastBuildDate.length());
 				if(lastBuildDate.contains("week") || lastBuildDate.contains("month") || lastBuildDate.contains("year")) break;
-				item.setPubDate(lastBuildDate);
+				
+				String vedio_time = element.select("span[class=video-time]").text();
+				
+				item.setPubDate(vedio_time);
 				
 				item.setHas_image(true);
 				imageUrl = element.select("span[class=yt-thumb-clip]").select("img").attr("src");
