@@ -204,40 +204,11 @@
 		"link":"https://www.youtube.com/user/avexnetwork/videos"
 	
 	},
-	{
-		"companyName":"HikakinTV",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/HikakinTV/videos"
-	
-	},
-	{
-		"companyName":"木下ゆうか",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/kinoyuu0204/videos"
-	
-	},
-	{
-		"companyName":"SeikinTV",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/SeikinTV/videos"
-	
-	},
+
 	{
 		"companyName":"東海オンエア",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/user/TokaiOnAir/videos"
-	
-	},
-	{
-		"companyName":"Warner Music Japan",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/warnermusicjapan/videos"
-	
-	},
-	{
-		"companyName":"UNIVERSAL MUSIC JAPAN",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/universalmusicjapan/videos"
 	
 	},
 
@@ -292,12 +263,6 @@
 		"link":"https://www.youtube.com/user/jypentertainment/videos"
 	
 	},	
-	{
-		"companyName":"CJENMMUSIC Official",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/CJENMMUSIC/videos"
-	
-	},
 
 	{
 		"companyName":"Tiger FunnyWorks",
@@ -375,5 +340,32 @@
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UC0v-pxTo1XamIDE-f__Ad0Q/videos"
 	
-	}
+	},
+	{
+		"companyName":"トクサンTV【A&R】",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCfkM3u-0uSKADDitZLpXcfA/videos"
+	
+	},
+	
+	{
+		"companyName":"モンスト（モンスターストライク）公式",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/monsterstrikepr/videos"
+	
+	},
+	
+	{
+		"companyName":"ディズニー公式",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/disneyjp/videos"
+	
+	},
+	
+	{
+		"companyName":"TVTOKYO",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/TVTOKYO/videos"
+	
+	}	
 ]}
