@@ -183,14 +183,6 @@
 	
 	},
 
-
-	{
-		"companyName":"はじめしゃちょー",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/0214mex/videos"
-	
-	},
-
 	{
 		"companyName":"ワタナベマホト",
 		"channel":"Vedio",
@@ -205,12 +197,6 @@
 	
 	},
 
-	{
-		"companyName":"東海オンエア",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/TokaiOnAir/videos"
-	
-	},
 
 	{
 		"companyName":"世界不思議チャンネル",
@@ -238,12 +224,6 @@
 	},
 
 	{
-		"companyName":"NHK",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/NHKonline/videos"
-	
-	},
-	{
 		"companyName":"読売テレビ",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/user/ytvyomiuri/videos"
@@ -256,13 +236,7 @@
 		"link":"https://www.youtube.com/user/DigitalShockwave/videos"
 	
 	},
-
-	{
-		"companyName":"jypentertainment",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/jypentertainment/videos"
 	
-	},	
 
 	{
 		"companyName":"Tiger FunnyWorks",
@@ -336,26 +310,7 @@
 		"link":"https://www.youtube.com/channel/UC0v-pxTo1XamIDE-f__Ad0Q/videos"
 	
 	},
-	{
-		"companyName":"トクサンTV【A&R】",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCfkM3u-0uSKADDitZLpXcfA/videos"
 	
-	},
-	
-	{
-		"companyName":"モンスト（モンスターストライク）公式",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/monsterstrikepr/videos"
-	
-	},
-	
-	{
-		"companyName":"ディズニー公式",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/disneyjp/videos"
-	
-	},
 	
 	{
 		"companyName":"モンストアニメ公式",
