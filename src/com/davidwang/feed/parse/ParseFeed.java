@@ -319,7 +319,7 @@ public class ParseFeed {
 		params.put("image_width", (int) item.getImage().getWidth());
 		params.put("image_height", (int) item.getImage().getHeight());
 
-		System.out.println("item = " + item.toString());
+		//System.out.println("item = " + item.toString());
 
 		String results = PostToServer(url, params);
 		//System.out.println(results);

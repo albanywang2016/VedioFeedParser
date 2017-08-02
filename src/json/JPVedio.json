@@ -317,5 +317,33 @@
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UCWzenZSy9GJBcPzdSm-UX5w/videos"
 	
-	}	
+	},
+	
+	{
+		"companyName":"Epic Laughs",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCPAt6mvC-wKunwKyiEeAxFQ/videos"
+	
+	},
+	
+	{
+		"companyName":"iPanda",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/user/iPandaChannel/videos"
+	
+	},
+	
+	{
+		"companyName":"竹林笹",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCybWgTwV0CMQI7z-tEboRHQ/videos"
+	
+	},
+	
+	{
+		"companyName":"Music",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ/videos"
+	
+	}
 ]}
