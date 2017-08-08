@@ -62,9 +62,10 @@ public class ParseFeed {
 					// for the first time that source and channel are not in source table.
 					// insert to source table and parse the feed, insert to message table and image table.
 					try {
+						String day_created = Utils.formatTime(LocalDateTime.now());
 						if (!isInSourceTable(source_name, channel)) {
 							insertToSourceTable(source_name, channel);
-							String day_created = Utils.formatTime(LocalDateTime.now());
+							
 							// parse the feed
 							Feed feed = parser.readFeed(source_name, channel, link, "", "");
 							// System.out.println(feed);
@@ -75,15 +76,14 @@ public class ParseFeed {
 							// if message has image, write to image DB
 							for (int i = feed.getItems().size() - 1; i >= 0; --i) {
 								FeedItem item = feed.getItems().get(i);
+								item.setDayCreated(day_created);
 								if (item.isHas_image()) {
 									URL imageURL = new URL(item.getImage().getLink());
 									//System.out.println("imageurl = " + imageURL);
 									BufferedImage img = ImageIO.read(imageURL);
 									item.getImage().setWidth(img.getWidth());
 									item.getImage().setHeight(img.getHeight());
-									item.setDayCreated(Utils.formatTime(LocalDateTime.now()));
 									InsertMessageWithImage(source_name, channel, item);
-
 								} else {
 									InsertMessageNoImage(source_name, channel, item);
 								}
@@ -91,7 +91,6 @@ public class ParseFeed {
 
 						} else { // not the first time get last item from message for each source/channel
 							String last_item = GetlastItemFromMessageTable(source_name, channel);
-							String day_created = Utils.formatTime(LocalDateTime.now());
 							
 							Feed feed = parser.readFeed(source_name, channel, link, "", last_item);
 
@@ -99,12 +98,12 @@ public class ParseFeed {
 
 								// if message has image, write to image DB
 								for (FeedItem item : feed.getItems()) {
+									item.setDayCreated(day_created);
 									if (item.isHas_image()) {
 										URL imageURL = new URL(item.getImage().getLink());
 										BufferedImage img = ImageIO.read(imageURL);
 										item.getImage().setWidth(img.getWidth());
 										item.getImage().setHeight(img.getHeight());
-
 										InsertMessageWithImage(source_name, channel, item);
 									} else {
 										InsertMessageNoImage(source_name, channel, item);
@@ -277,7 +276,7 @@ public class ParseFeed {
 		params.put("last_update_time", last_update_time);
 		params.put("previous_last_update", previous_last_update);
 
-		String results = PostToServer(url, params);
+		PostToServer(url, params);
 
 	}
 
@@ -294,8 +293,9 @@ public class ParseFeed {
 		params.put("pub_date", item.getPubDate());
 		params.put("day_created", item.getDayCreated());
 
-		System.out.println("contents = " + item.getContents());
-		String results = PostToServer(url, params);
+		System.out.println("source_name= " + source_name + " channel= " + channel + " title= " + item.getTitle());
+
+		PostToServer(url, params);
 	}
 
 	private static void InsertMessageWithImage(String source_name, String channel, FeedItem item) throws IOException {
@@ -319,9 +319,9 @@ public class ParseFeed {
 		params.put("image_width", (int) item.getImage().getWidth());
 		params.put("image_height", (int) item.getImage().getHeight());
 
-		//System.out.println("item = " + item.toString());
+		System.out.println("source_name= " + source_name + " channel= " + channel + " title= " + item.getTitle());
 
-		String results = PostToServer(url, params);
+		PostToServer(url, params);
 		//System.out.println(results);
 
 	}
