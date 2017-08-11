@@ -45,14 +45,6 @@
 	
 	
 	{
-		"companyName":"The Japan Times",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/thejapantimes/videos"
-	
-	},
-	
-	
-	{
 		"companyName":"SankeiNews",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/user/SankeiNews/videos"
@@ -66,19 +58,7 @@
 		"link":"https://www.youtube.com/user/ibarakishimbun1/videos"
 	
 	},
-	{
-		"companyName":"沖縄タイムス公式動画チャンネル",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/TheOKINAWATIMES/videos"
-	
-	},
 
-	{
-		"companyName":"akitasakigake",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/akitasakigake/videos"
-	
-	},
 
 	{
 		"companyName":"DoshinWeb",
@@ -93,12 +73,6 @@
 	
 	},
 	
-	{
-		"companyName":"徳島県チャンネル",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/tokushimakouhou/videos"
-	
-	},
 	
 	{
 		"companyName":"Jリーグ公式チャンネル",
@@ -121,12 +95,6 @@
 	
 	},
 	
-	{
-		"companyName":"SankeiUp",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/SankeiUp/videos"
-	
-	},
 	
 	{
 		"companyName":"ANNnewsCH",
@@ -155,12 +123,6 @@
 		"link":"https://www.youtube.com/channel/UCHBnS9TR-4h2nvuiiq3XCAA/videos"
 	
 	},
-	{
-		"companyName":"AFPBB News",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/afpbbnews/videos"
-	
-	},	
 
 	{
 		"companyName":"Kohachannel",
@@ -183,12 +145,6 @@
 	
 	},
 
-	{
-		"companyName":"ワタナベマホト",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UC4Au2QrbfaSjHPSdk5tUBeg/videos"
-	
-	},
 
 	{
 		"companyName":"avex",
@@ -270,13 +226,6 @@
 		"link":"https://www.youtube.com/user/kazuyahkd/videos"
 	
 	},
-	{
-		"companyName":"北海道新聞 動画ニュース",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/DoshinWeb/videos"
-	
-	},
-
 
 	{
 		"companyName":"funny pets",
