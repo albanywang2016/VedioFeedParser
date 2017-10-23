@@ -43,6 +43,7 @@ public class Const {
 
 
 	public static final String JPVEDIO = "json/JPVedio.json";
+	public static final String JPMANGA = "json/JPManga.json";
 	public static final String NICOVIDEO = "http://www.nicovideo.jp";
 	public static final String YOUTUBE = "https://www.youtube.com";
 

@@ -38,7 +38,7 @@ public class ParseFeed {
 
 	public static void main(String[] args) {
 
-		String[] allFeeds = { Const.JPVEDIO };
+		String[] allFeeds = { Const.JPVEDIO, Const.JPMANGA };
 
 		for (String feed_path : allFeeds) {
 
