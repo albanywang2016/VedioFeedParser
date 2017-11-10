@@ -145,14 +145,6 @@
 	},
 	
 	{
-		"companyName":"PacificLeague TV (パ・リーグTV 公式)",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UC0v-pxTo1XamIDE-f__Ad0Q/videos"
-	
-	},
-	
-	
-	{
 		"companyName":"iPanda",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/user/iPandaChannel/videos"
@@ -199,13 +191,6 @@
 	},
 	
 	{
-		"companyName":"hisa お笑い",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UClE_UlUuYYgbid-qIYgb-kg/videos"
-	
-	},
-	
-	{
 		"companyName":"Comedy by Kamui Channel",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UCyUVE71hY8n8MEHu8VHZMWA/videos"
@@ -232,50 +217,60 @@
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UCLsdm7nCJCVTWSid7G_f0Pg/videos"
 	
-	},			
+	},
 
 	{
-		"companyName":"CHECKKING VID",
+		"companyName":"今日の動画【光】",
 		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/AKAD3MiK1/videos"
+		"link":"https://www.youtube.com/channel/UCcl6Erlvir4_m3IHgteL8Mw/videos"
 	
 	},
 	
 	{
-		"companyName":"WorldFantasticChanneL",
+		"companyName":"tiktok _japan",
 		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCcVMXtl_pOs7nK3jLaidiWQ/videos"
+		"link":"https://www.youtube.com/channel/UCu2jkThe-GOQQxaubNUp_4g/videos"
+	
+	},
+	{
+		"companyName":"明日の動画【闇】",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCUw5sC8UEpFZwUXG0M-deBw/videos"
+	
+	},
+	{
+		"companyName":"衝撃のオノマトペ",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCCrflkhvVog0uVp0JvUrHeA/videos"
+	
+	},
+	{
+		"companyName":"衝撃のオノマトペ面白爆笑衝撃動画",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UCL3dlW0GbMfMqQ3-8G2C1Mg/videos"
 	
 	},
 	
 	{
-		"companyName":"omoshiroTV",
+		"companyName":"話題の面白動画『将』",
 		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCjrFP7VB0d0HS6uzs_22osA/videos"
-	
-	},		
-
-
-	{
-		"companyName":"鬼爆笑！オモシロ動画チャンネル",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCb6j2R5K60DKhwwqs_R6pjA/videos"
-	
-	},
-	
-	
-	{
-		"companyName":"やーちゃん",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCP0LtpzB8RDS1xlrB_kCxHQ/videos"
+		"link":"https://www.youtube.com/channel/UCZr_l8kn7P4CHG6cYwnjRvA/videos"
 	
 	},
 	
 	{
-		"companyName":"面白動画まとめTV",
+		"companyName":"一瞬で笑える！？",
 		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCvwASxSu881HmmMhWt5Qeuw/videos"
+		"link":"https://www.youtube.com/channel/UCZr_l8kn7P4CHG6cYwnjRvA/videos"
 	
-	}	
-		
+	},
+	
+	{
+		"companyName":"笑うフクロウ",
+		"channel":"Vedio",
+		"link":"https://www.youtube.com/channel/UC8GEhpkglyBQe4J64NExLDg/videos"
+	
+	}
+	
+	
 ]}
