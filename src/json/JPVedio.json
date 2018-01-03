@@ -98,14 +98,6 @@
 
 
 	{
-		"companyName":"avex",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/avexnetwork/videos"
-	
-	},
-
-
-	{
 		"companyName":"世界不思議チャンネル",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UCs25kfyyfXCvPl6zHn4F9RA/videos"
@@ -135,12 +127,6 @@
 		"companyName":"TomoNews Japan",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/user/TomoNewsJP/videos"
-	
-	},
-	{
-		"companyName":"KAZUYA Channel",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/user/kazuyahkd/videos"
 	
 	},
 	
@@ -191,9 +177,9 @@
 	},
 	
 	{
-		"companyName":"Comedy by Kamui Channel",
+		"companyName":"デスマン",
 		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCyUVE71hY8n8MEHu8VHZMWA/videos"
+		"link":"https://www.youtube.com/channel/UCrWlaEzy9BIzFlDN9SvC3rQ/videos"
 	
 	},
 	
@@ -220,30 +206,26 @@
 	},
 
 	{
-		"companyName":"今日の動画【光】",
+		"companyName":"tvasahi",
 		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCcl6Erlvir4_m3IHgteL8Mw/videos"
+		"link":"https://www.youtube.com/user/tvasahi/videos"
 	
 	},
-	
+		
 	{
 		"companyName":"tiktok _japan",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UCu2jkThe-GOQQxaubNUp_4g/videos"
 	
 	},
-	{
-		"companyName":"明日の動画【闇】",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCUw5sC8UEpFZwUXG0M-deBw/videos"
-	
-	},
+
 	{
 		"companyName":"衝撃のオノマトペ",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UCCrflkhvVog0uVp0JvUrHeA/videos"
 	
 	},
+	
 	{
 		"companyName":"衝撃のオノマトペ面白爆笑衝撃動画",
 		"channel":"Vedio",
@@ -252,24 +234,9 @@
 	},
 	
 	{
-		"companyName":"話題の面白動画『将』",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCZr_l8kn7P4CHG6cYwnjRvA/videos"
-	
-	},
-	
-	{
-		"companyName":"一瞬で笑える！？",
-		"channel":"Vedio",
-		"link":"https://www.youtube.com/channel/UCZr_l8kn7P4CHG6cYwnjRvA/videos"
-	
-	},
-	
-	{
 		"companyName":"笑うフクロウ",
 		"channel":"Vedio",
 		"link":"https://www.youtube.com/channel/UC8GEhpkglyBQe4J64NExLDg/videos"
-	
 	}
 	
 	
